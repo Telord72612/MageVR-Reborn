@@ -10,6 +10,7 @@ Tutorial book will be provided in game with the first time a token appear, you c
 ## MageVR project and timeline
 Completed
 - **VR Backpack** Initial release.
+
 In progress
 - **VR Backpack**Looting system
 - **VR Backpack**adding different backpack layout and type
