@@ -12,12 +12,12 @@ Completed
 - **VR Backpack** Initial release.
 
 In progress
-- **VR Backpack**Looting system
-- **VR Backpack**adding different backpack layout and type
-- **VR Spellbook**Initial release
-- **VR Spellbook**Glyph Casting
-- **VR QuestLog**Initial release
-- **VR Questlog**VR Map integration
+- **VR Backpack** Looting system
+- **VR Backpack** Adding different backpack layout and type
+- **VR Spellbook** Initial release
+- **VR Spellbook** Glyph Casting
+- **VR QuestLog** Initial release
+- **VR Questlog** VR Map integration
 
 
 
