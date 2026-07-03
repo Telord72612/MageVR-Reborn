@@ -109,7 +109,7 @@ no flat menus, no SteamVR overlays. Point at an item, grab it, pull and it's **p
 4. Equip the token to a hand, then use VRIK holsters as usual — holster it on your shoulder, draw it
    to open the backpack. IMPORTANT: the token is considered a knife, so if you want the token on your shoulder, you got to authorize knife holstering over your shoulder in VRIK menu.
 
-## Controls
+## Controls and Usage
 
 | Action | Input |
 |---|---|
@@ -121,6 +121,19 @@ no flat menus, no SteamVR overlays. Point at an item, grab it, pull and it's **p
 | Whole stack | **double-grip**, then pull |
 | Rearrange / merge / split | grip an item, release over another slot |
 | Store an item | release a held item at the backpack |
+
+## Feature and Explanation
+
+| Feature| How to use |
+|---|---|
+| Tab Compartment(top) | select which tab to show in the main compartment |
+| Utility Compartment(left) | do action with selected item like equip, sort, split, delete |
+| Information Compartment(bottom) | give information about currently selected item, 3D preview, Bag of Hoarding |
+| Main Compartment(center) | show the items per selected tab, pull or store items, show character doll |
+| Bag of Hoarding | store up to 10 type of item, pull out to get a pouch container that stay available |
+| Split | split any stack of item in multiple stack, mainly for gold |
+| Rearrange / merge / split | grip an item, release over another slot |
+| Character Sheet | show a doll of the player and it's current gears, info on skill, exp, lvl |
 
 ## Known limitations
 
