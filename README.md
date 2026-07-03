@@ -124,6 +124,7 @@ no flat menus, no SteamVR overlays. Point at an item, grab it, pull and it's **p
 
 ## Known limitations
 
+- **ONLY WORK WITH THE LEFT HAND**  Right hand support will come eventualy. Everything need to be done from ground up as it's not just "mirror".
 - **Skyrim VR only** (this is a VR interaction mod at its core).
 - Item names render A–Z, 0–9 and basic punctuation (accented characters display as blanks).
 - Slot arrangement currently resets on game restart (persistent arrangement is planned).
