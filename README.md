@@ -94,7 +94,7 @@ no flat menus, no SteamVR overlays. Point at an item, grab it, pull and it's **p
 |---|---|
 | [Inventory Injector (I4)](https://www.nexusmods.com/skyrimspecialedition/mods/85702) | per-item icon rules — your menu icons and backpack icons stay identical |
 | [B.O.O.B.I.E.S.](https://www.nexusmods.com/skyrimspecialedition/mods/89241) / / [O.C.F.](https://www.nexusmods.com/skyrimspecialedition/mods/81469) / [A.S.S.](https://www.nexusmods.com/skyrimspecialedition/mods/89823) / [T.H.I.C.C.](https://www.nexusmods.com/skyrimspecialedition/mods/90508) / [P.E.N.I.S.](https://www.nexusmods.com/skyrimspecialedition/mods/90526) / [S.E.X.Y.](https://www.nexusmods.com/skyrimspecialedition/mods/105731) icon packs | the extended icon art the I4 rules point at |
-| Legacy of the Dragonborn | its backpack is part of the Big Leather Backpack family and works too |
+
 
 > **No I4? No problem.** The backpack detects whether Inventory Injector is installed. With it, the
 > backpack reproduces your exact I4 icon-pack icons. Without it, every item automatically falls back
