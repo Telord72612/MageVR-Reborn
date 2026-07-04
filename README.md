@@ -85,7 +85,7 @@ no flat menus, no SteamVR overlays. Point at an item, grab it, pull and it's **p
 | [VR Address Library for SKSEVR](https://www.nexusmods.com/skyrimspecialedition/mods/58101) | version-independent function resolution |
 | [HIGGS VR](https://www.nexusmods.com/skyrimspecialedition/mods/43930) | physical grab / hold / release of pulled items |
 | [VRIK Player Avatar](https://www.nexusmods.com/skyrimspecialedition/mods/23416) | the shoulder holster the backpack draws from |
-| [ElSopa HD – Big Backpack](https://www.nexusmods.com/skyrimspecialedition/mods/) | textures for the backpack model |
+| [ElSopa HD – Big Backpack](https://www.nexusmods.com/skyrimspecialedition/mods/36445) | textures for the backpack model |
 | [SkyUI VR](https://github.com/Odie/skyui-vr/releases) | the base icon set — every item icon falls back to SkyUI's icon language |
 
 **Optional — highly recommended:**
