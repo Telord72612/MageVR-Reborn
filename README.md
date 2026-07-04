@@ -19,7 +19,7 @@ In progress
 - **VR QuestLog** Initial release
 - **VR Questlog** VR Map integration
 
-**[TUTORIAL VIDEO LINK](https://youtu.be/eiABbi_X5vc)**
+# **[TUTORIAL VIDEO LINK](https://youtu.be/eiABbi_X5vc)**
 
 
 # VR Backpack — a physical inventory for Skyrim VR
