@@ -1,0 +1,668 @@
+# vrbp_iconrules.txt  -- VR Backpack per-item icon rules (build-time generated, v2).
+# FAITHFUL I4 replay: RULE lines are evaluated IN ORDER, last-match-wins per field, AND
+# across all present match fields. Compiled from InventoryInjector/*.json in LOAD ORDER
+# (master block, then plugins.txt) + atlas_map.json. cells 0..254 = real icons; cell 255
+# = transparent reset cell (never referenced here). Colors R G B 0..255 (default white).
+RULESV 2
+COLS 16
+ROWS 16
+
+# --- global fallback (generic misc icon) ---
+GLOBAL 157 255 255 255
+
+# --- per-FormType defaults (ftIndex = RE::FormType decimal) ---
+FT 23 159 255 255 255   # Scroll
+FT 26 152 255 255 255   # Armor
+FT 27 153 255 255 255   # Book
+FT 30 155 255 255 255   # Ingredient
+FT 31 187 255 255 255   # Light
+FT 32 157 255 255 255   # Misc
+FT 41 160 255 255 255   # Weapon
+FT 42 199 255 255 255   # Ammo
+FT 45 156 255 255 255   # KeyMaster
+FT 46 158 255 255 255   # AlchemyItem
+FT 48 141 255 255 255   # Note
+FT 52 198 255 255 255   # SoulGem
+
+# --- vanilla WEAPON-type icons (WEAP <RE::WEAPON_TYPE> cell r g b). color #A4A5BF ---
+WEAP 0 202 164 165 191   # weapon_claw
+WEAP 1 211 164 165 191   # weapon_sword
+WEAP 2 204 164 165 191   # weapon_dagger
+WEAP 3 212 164 165 191   # weapon_waraxe
+WEAP 4 208 164 165 191   # weapon_mace
+WEAP 5 205 164 165 191   # weapon_greatsword
+WEAP 6 200 164 165 191   # weapon_battleaxe
+WEAP 7 201 164 165 191   # weapon_bow
+WEAP 8 210 164 165 191   # weapon_staff
+WEAP 9 203 164 165 191   # weapon_crossbow
+
+# --- vanilla ARMOR icons (ARMO <slot> <weight> cell r g b). color by ArmorType ---
+ARMO body light 163 117 96 0   # lightarmor_body
+ARMO body heavy 128 107 117 133   # armor_body
+ARMO body clothing 143 237 218 135   # clothing_body
+ARMO shield light 170 117 96 0   # lightarmor_shield
+ARMO shield heavy 138 107 117 133   # armor_shield
+ARMO shield clothing 151 237 218 135   # clothing_shield
+ARMO head light 168 117 96 0   # lightarmor_head
+ARMO head heavy 135 107 117 133   # armor_head
+ARMO head clothing 148 237 218 135   # clothing_head
+ARMO hands light 167 117 96 0   # lightarmor_hands
+ARMO hands heavy 134 107 117 133   # armor_hands
+ARMO hands clothing 147 237 218 135   # clothing_hands
+ARMO forearms light 166 117 96 0   # lightarmor_forearms
+ARMO forearms heavy 133 107 117 133   # armor_forearms
+ARMO forearms clothing 146 237 218 135   # clothing_forearms
+ARMO feet light 165 117 96 0   # lightarmor_feet
+ARMO feet heavy 132 107 117 133   # armor_feet
+ARMO feet clothing 145 237 218 135   # clothing_feet
+ARMO calves light 164 117 96 0   # lightarmor_calves
+ARMO calves heavy 130 107 117 133   # armor_calves
+ARMO calves clothing 144 237 218 135   # clothing_calves
+ARMO amulet any 127 237 218 135   # armor_amulet
+ARMO ring any 137 237 218 135   # armor_ring
+ARMO circlet any 131 237 218 135   # armor_circlet
+ARMO default any 152 237 218 135   # default_armor
+
+# --- vanilla POTION colors (POTAV <actorValue> cell r g b). I4 subType colors ---
+POTAV poison 194 173 0 179   # potion_poison
+POTAV health 192 219 46 115   # potion_health
+POTAV magicka 193 46 159 219   # potion_magic
+POTAV stamina 196 81 219 46   # potion_stam
+POTAV fireresist 190 199 54 54   # potion_fire
+POTAV elecresist 195 234 171 0   # potion_shock
+POTAV frostresist 191 31 251 255   # potion_frost
+POTAV default 158 255 255 255   # default_potion
+
+# --- ORDERED I4 rules (592), file order = load order, last-match-wins per field ---
+RULE -1 255 255 255 | FT=MiscItem KWALL=VendorItemFireword ASSUBTYPE=Firewood
+RULE -1 255 255 255 | FT=MiscItem FID=Skyrim.esm|1994F,Skyrim.esm|59654,Skyrim.esm|9DFBB,Skyrim.esm|9F7A6 ASSUBTYPE=Gem
+RULE -1 255 255 255 | FT=MiscItem FID=Skyrim.esm|75868,Skyrim.esm|F6767,Skyrim.esm|AADB6,Skyrim.esm|AADB7,Skyrim.esm|4286C,Dawnguard.esm|2993,Dawnguard.esm|2994,Dawnguard.esm|11CF7 ASSUBTYPE=Remains
+RULE 171 199 54 54 | FT=Spell RES=40
+RULE 173 234 171 0 | FT=Spell RES=42
+RULE 172 31 251 255 | FT=Spell RES=41
+RULE -1 199 54 54 | FT=Scroll RES=40 COLORONLY
+RULE -1 255 255 0 | FT=Scroll RES=42 COLORONLY
+RULE -1 31 251 255 | FT=Scroll RES=41 COLORONLY
+RULE -1 237 218 135 | FT=Armor WC=Jewelry,Clothing,Other COLORONLY
+RULE -1 117 96 0 | FT=Armor WC=Light COLORONLY
+RULE -1 107 117 133 | FT=Armor WC=Heavy COLORONLY
+RULE -1 164 165 191 | FT=Weapon COLORONLY
+RULE -1 168 158 140 | FT=Ammo COLORONLY
+RULE -1 173 0 179 | FT=Potion ST=Poison COLORONLY
+RULE -1 219 46 115 | FT=Potion ST=Health,HealRate,HealRateMult COLORONLY
+RULE -1 46 159 219 | FT=Potion ST=Magicka,MagickaRate,MagickaRateMult COLORONLY
+RULE -1 81 219 46 | FT=Potion ST=Stamina,StaminaRate,StaminaRateMult COLORONLY
+RULE -1 199 54 54 | FT=Potion ST=FireResist COLORONLY
+RULE -1 234 171 0 | FT=Potion ST=ElectricResist COLORONLY
+RULE -1 31 251 255 | FT=Potion ST=FrostResist COLORONLY
+RULE -1 215 212 255 | FT=SoulGem ST=Petty COLORONLY
+RULE -1 192 186 255 | FT=SoulGem ST=Lesser COLORONLY
+RULE -1 171 163 255 | FT=SoulGem ST=Common COLORONLY
+RULE -1 148 139 252 | FT=SoulGem ST=Greater COLORONLY
+RULE -1 117 105 255 | FT=SoulGem ST=Grand,Azura COLORONLY
+RULE -1 255 176 209 | FT=MiscItem ST=Gem COLORONLY
+RULE -1 219 179 110 | FT=MiscItem ST=Hide COLORONLY
+RULE -1 130 130 130 | FT=MiscItem ST=Ingot COLORONLY
+RULE -1 168 158 140 | FT=MiscItem ST=Firewood COLORONLY
+RULE -1 204 204 51 | FT=MiscItem ST=Gold COLORONLY
+RULE -1 186 141 35 | FT=MiscItem ST=Leather COLORONLY
+RULE -1 186 141 35 | FT=MiscItem ST=LeatherStrips COLORONLY
+RULE -1 237 218 135 | FT=MiscItem ST=ChildrensClothes COLORONLY
+RULE -1 255 255 255 | FT=MiscItem FID=Dawnguard.esm|12F97,Dawnguard.esm|12FC3,Dawnguard.esm|19ABB,Dawnguard.esm|19ABC,Dawnguard.esm|19ABD ASSUBTYPE=Gem
+RULE -1 255 255 255 | FT=MiscItem FID=Dawnguard.esm|5704,Dawnguard.esm|5705,Dawnguard.esm|5706,Dawnguard.esm|5707 ASSUBTYPE=Remains
+RULE -1 255 255 255 | FT=MiscItem FID=Dragonborn.esm|1CAC0,Dragonborn.esm|1CAC1 ASSUBTYPE=dragonclaw
+RULE -1 255 255 255 | FT=MiscItem FID=Dragonborn.esm|2145A,Dragonborn.esm|3166F,Dragonborn.esm|31670,Dragonborn.esm|31671,Dragonborn.esm|31672 ASSUBTYPE=Gem
+RULE 188 255 255 255 | FT=MiscItem FID=Dragonborn.esm|247F9 NOCOLOR
+RULE -1 255 255 255 | FT=Weapon FID=Dragonborn.esm|179C9,Dragonborn.esm|206F2,Dragonborn.esm|398E6 ASSUBTYPE=pickaxe
+RULE -1 255 255 255 | FT=Weapon FID=BeyondSkyrimMerchant.esp|13209 ASSUBTYPE=Pickaxe
+RULE 178 255 255 255 | FT=MiscItem ST=Clutter FID=BeyondSkyrimMerchant.esp|6073,BeyondSkyrimMerchant.esp|6074,BeyondSkyrimMerchant.esp|6075,BeyondSkyrimMerchant.esp|6076 NOCOLOR
+RULE -1 255 255 255 | FT=MiscItem FID=ccASVSSE001-ALMSIVI.esm|990ED,ccASVSSE001-ALMSIVI.esm|990F0,ccASVSSE001-ALMSIVI.esm|990F1,ccASVSSE001-ALMSIVI.esm|990F2 ASSUBTYPE=Gem
+RULE -1 255 255 255 | FT=MiscItem FID=ccBGSSSE019-StaffofSheogorath.esl|80E ASSUBTYPE=Remains
+RULE -1 255 255 255 | FT=MiscItem FID=ccBGSSSE036-PetBWolf.esl|80A ASSUBTYPE=Remains
+RULE 178 255 255 255 | FT=MiscItem FID=ccKRTSSE001_Altar.esl|81A NOCOLOR
+RULE -1 255 255 255 | FT=Armor FID=ccBGSSSE025-AdvDSGS.esm|183E63 ASSUBTYPE=Ring
+RULE 178 255 255 255 | FT=MiscItem ST=Clutter FID=BSAssets.esm|6028DC NOCOLOR
+RULE -1 255 255 255 | FT=MiscItem FID=Wyrmstooth.esp|27978A ASSUBTYPE=DragonClaw
+RULE -1 255 255 255 | FT=MiscItem FID=Wyrmstooth.esp|2F60BA,Wyrmstooth.esp|2F60BB,Wyrmstooth.esp|2F60BC,Wyrmstooth.esp|2F60BD,Wyrmstooth.esp|2F60BE,Wyrmstooth.esp|2F60BF,Wyrmstooth.esp|2F60C0,Wyrmstooth.esp|2F60C1,Wyrmstooth.esp|2F60C2,Wyrmstooth.esp|2F60C3 ASSUBTYPE=Remains
+RULE 184 130 130 130 | FT=MiscItem FID=Skyrim.esm|5ACDB,Skyrim.esm|5ACDC,Skyrim.esm|5ACDE,Skyrim.esm|71CF3,Skyrim.esm|5ACE1,Skyrim.esm|5ACE0,Skyrim.esm|5ACDD,Skyrim.esm|5ACE2,Skyrim.esm|5B2DF,Skyrim.esm|5ACDF,Dragonborn.esm|2B06B,Dragonborn.esm|17749,Dragonborn.esm|195A9,ccBGSSSE025-AdvDSGS.esm|BC6,ccBGSSSE025-AdvDSGS.esm|BC9,BSAssets.esm|601C87,BSAssets.esm|601C50,BSAssets.esm|601C92,BSAssets.esm|601C4F,BSAssets.esm|601C88,Wyrmstooth.esp|3344F8,Wyrmstooth.esp|3344F9
+RULE 184 130 130 130 | FT=MiscItem KWALL=IconOre
+RULE 140 255 255 255 | FT=Book FID=Skyrim.esm|DDEFB,Skyrim.esm|EF07A,Skyrim.esm|F33CD,Skyrim.esm|F33CE,Skyrim.esm|F33CF,Skyrim.esm|F33D0,Skyrim.esm|F33D1,Skyrim.esm|F33D2,Skyrim.esm|F33D3,Skyrim.esm|F33D4,Skyrim.esm|F33D5,Skyrim.esm|F33E0,Dragonborn.esm|1CAF2,ccBGSSSE001-Fish.esm|70CCA,ccBGSSSE001-Fish.esm|70CCB,ccBGSSSE001-Fish.esm|70CCC,ccBGSSSE001-Fish.esm|70CCD,ccBGSSSE001-Fish.esm|70CCE,ccBGSSSE001-Fish.esm|70CCF,ccBGSSSE001-Fish.esm|70CD0,ccBGSSSE001-Fish.esm|70CD1,ccBGSSSE001-Fish.esm|70CD2,ccBGSSSE001-Fish.esm|70CD3,ccBGSSSE001-Fish.esm|70CD4,ccBGSSSE001-Fish.esm|70CD5 NOCOLOR
+RULE 140 255 255 255 | FT=Book KWALL=IconMap NOCOLOR
+RULE 140 255 255 255 | FT=MiscItem FID=Skyrim.esm|60CC2,Skyrim.esm|BBCD5,Dragonborn.esm|2BAAE,ccBGSSSE031-AdvCyrus.esm|80D,ccBGSSSE034-MntUni.esl|D67,ccFFBSSE001-ImperialDragon.esl|867,BeyondSkyrimMerchant.esp|E29A NOCOLOR
+RULE 140 255 255 255 | FT=MiscItem KWALL=IconMap NOCOLOR
+RULE -1 255 255 255 | FT=MiscItem FID=ccKRTSSE001_Altar.esl|81A ASSUBTYPE=Gold
+RULE -1 255 255 255 | FT=MiscItem KWALL=IconCurrency ASSUBTYPE=Gold
+RULE 176 255 255 255 | FT=MiscItem KWALL=IconClaw NOCOLOR
+RULE -1 255 255 255 | FT=Weapon FID=BSAssets.esm|60258A ASSUBTYPE=Pickaxe
+RULE 209 255 255 255 | FT=Weapon KWALL=IconPickaxe NOCOLOR
+RULE -1 255 255 255 | FT=Weapon FID=BSAssets.esm|6025BF ASSUBTYPE=WoodAxe
+RULE 213 255 255 255 | FT=Weapon KWALL=IconWoodAxe NOCOLOR
+RULE -1 112 88 66 | FT=MiscItem KWALL=VendorItemFireword COLORONLY
+RULE 186 120 85 142 | FT=MiscItem FID=Dragonborn.esm|1CD7C,ccBGSSSE041-NetchLeather.esl|892,ccBGSSSE041-NetchLeather.esl|893,ccBGSSSE041-NetchLeather.esl|8A3,ccBGSSSE041-NetchLeather.esl|909
+RULE 109 139 124 90 | FT=MiscItem FID=Skyrim.esm|3AD57,Dawnguard.esm|195AA,Dragonborn.esm|2B04E
+RULE 109 139 124 90 | FT=MiscItem KWALL=IconChitin
+RULE 100 255 255 255 | FT=Armor PARTS=47 NOCOLOR
+RULE 101 255 255 255 | FT=Armor PARTS=46 NOCOLOR
+RULE 118 255 255 255 | FT=Scroll KWALL=IconSpider NOCOLOR
+RULE 118 255 255 255 | FT=Scroll FID=Dragonborn.esm|1445E,Dragonborn.esm|14480,Dragonborn.esm|16E1C,Dragonborn.esm|1707B,Dragonborn.esm|1952C,Dragonborn.esm|19534,Dragonborn.esm|1CAB0,Dragonborn.esm|1DA03,Dragonborn.esm|206D3,Dragonborn.esm|206D9,Dragonborn.esm|206DB,Dragonborn.esm|2095F,Dragonborn.esm|20960,Dragonborn.esm|20961,Dragonborn.esm|27490,Dragonborn.esm|2749D,Dragonborn.esm|274A5,Dragonborn.esm|3319E,Dragonborn.esm|3319F,Dragonborn.esm|331A0,Dragonborn.esm|331A1 NOCOLOR
+RULE 118 255 255 255 | FT=MiscItem FID=Dragonborn.esm|17719,Dragonborn.esm|1771F NOCOLOR
+RULE 113 255 255 255 | FT=Armor FID=ccVSVSSE004-BeAFarmer.esl|86F,ccVSVSSE004-BeAFarmer.esl|870,ccVSVSSE004-BeAFarmer.esl|871,ccVSVSSE004-BeAFarmer.esl|872,ccVSVSSE004-BeAFarmer.esl|873,ccVSVSSE004-BeAFarmer.esl|874,ccVSVSSE004-BeAFarmer.esl|875 NOCOLOR
+RULE 113 255 255 255 | FT=Armor KWALL=IconHousePart NOCOLOR
+RULE 113 255 255 255 | FT=MiscItem FID=HearthFires.esm|3043,HearthFires.esm|3035,HearthFires.esm|5A69,HearthFires.esm|3011,HearthFires.esm|303F,HearthFires.esm|3012,HearthFires.esm|300E,HearthFires.esm|300F,HearthFires.esm|306C,HearthFires.esm|5A68
+RULE 113 255 255 255 | FT=MiscItem ST=18 NOCOLOR
+RULE 113 255 255 255 | FT=MiscItem KWALL=IconHousePart NOCOLOR
+RULE 116 255 255 255 | FT=MiscItem ST=Tool NOCOLOR
+RULE 117 255 255 255 | FT=MiscItem ST=Toy NOCOLOR
+RULE 117 255 255 255 | FT=Scroll KWALL=IconToy NOCOLOR
+RULE 160 255 255 255 | FT=MiscItem FID=Skyrim.esm|E72AA,Skyrim.esm|E72AC,Skyrim.esm|E72B0,Skyrim.esm|E72AE,Skyrim.esm|E72A6,Skyrim.esm|E72A8,Skyrim.esm|E72A0,Skyrim.esm|E729E,Skyrim.esm|E729A,Skyrim.esm|E729C,Skyrim.esm|E7296,Skyrim.esm|E7298,Skyrim.esm|E72A4,Skyrim.esm|E72A2,Skyrim.esm|64283,Skyrim.esm|64285,Skyrim.esm|64287,Skyrim.esm|64289,Skyrim.esm|6428B,Skyrim.esm|6428E,Skyrim.esm|64290,Skyrim.esm|64292,Skyrim.esm|64294,Skyrim.esm|64296,Skyrim.esm|64298,Skyrim.esm|6E806,Skyrim.esm|DB351,Skyrim.esm|240D3,Skyrim.esm|240D4,Skyrim.esm|240D5,Skyrim.esm|240D6
+RULE 160 255 255 255 | FT=MiscItem KWALL=IconBrokenWeapon
+RULE 108 191 142 96 | FT=MiscItem KWALL=IconCampsite
+RULE 108 191 142 96 | FT=Potion FID=ccQDRSSE002-Firewood.esl|801
+RULE 108 191 142 96 | FT=Potion KWALL=IconCampsite
+RULE 125 255 255 255 | FT=Weapon KWANY=ccBGSSSE001_FishingPoleKW,IconFishingRod NOCOLOR
+RULE 120 91 196 201 | FT=MiscItem FID=ccBGSSSE067-DaedInv.esm|809,ccBGSSSE067-DaedInv.esm|762B7,ccBGSSSE067-DaedInv.esm|762B8,ccBGSSSE067-DaedInv.esm|762B9,ccBGSSSE067-DaedInv.esm|762BA,ccBGSSSE067-DaedInv.esm|BDB37
+RULE 120 91 196 201 | FT=MiscItem KWALL=IconAyleidCrystal
+RULE 119 91 196 201 | FT=SoulGem FID=ccBGSSSE037-Curios.esl|801 SOUL=Empty
+RULE 119 91 196 201 | FT=SoulGem KWALL=IconAyleidCrystal SOUL=Empty
+RULE 121 91 196 201 | FT=SoulGem FID=ccBGSSSE037-Curios.esl|801 SOUL=Partial
+RULE 121 91 196 201 | FT=SoulGem KWALL=IconAyleidCrystal SOUL=Partial
+RULE 120 91 196 201 | FT=SoulGem FID=ccBGSSSE037-Curios.esl|801 SOUL=Full
+RULE 120 91 196 201 | FT=SoulGem KWALL=IconAyleidCrystal SOUL=Full
+RULE 120 91 196 201 | FT=Potion FID=ccBGSSSE037-Curios.esl|800,ccBGSSSE067-DaedInv.esm|20E802,BSAssets.esm|6028E9,BSAssets.esm|6028EA,BSHeartland.esm|AF476,BSHeartland.esm|AF477
+RULE 120 91 196 201 | FT=Potion KWALL=IconAyleidCrystal
+RULE 112 255 255 255 | FT=MiscItem FID=Update.esm|30C9,Update.esm|30CA,BSHeartland.esm|723B8 NOCOLOR
+RULE 112 255 255 255 | FT=MiscItem KWALL=IconHorseTack NOCOLOR
+RULE 100 255 255 255 | FT=MiscItem FID=ccVSVSSE002-Pets.esl|851 NOCOLOR
+RULE 127 255 255 255 | FT=MiscItem FID=ccVSVSSE002-Pets.esl|871 NOCOLOR
+RULE 122 209 74 56 | FT=SoulGem FID=ccBGSSSE025-AdvDSGS.esm|804,ccBGSSSE025-AdvDSGS.esm|137F40 SOUL=Empty
+RULE 124 209 74 56 | FT=SoulGem FID=ccBGSSSE025-AdvDSGS.esm|804,ccBGSSSE025-AdvDSGS.esm|137F40 SOUL=Partial
+RULE 123 209 74 56 | FT=SoulGem FID=ccBGSSSE025-AdvDSGS.esm|804,ccBGSSSE025-AdvDSGS.esm|137F40 SOUL=Full
+RULE 110 112 95 50 | FT=MiscItem FID=Skyrim.esm|C886C,Skyrim.esm|C8878,Skyrim.esm|C8864,Skyrim.esm|C8872,Skyrim.esm|C8866,Skyrim.esm|C8864,Skyrim.esm|C8874,Skyrim.esm|C886A,Skyrim.esm|AEBF1,Skyrim.esm|C8861,Skyrim.esm|C8868,Skyrim.esm|C886E,Skyrim.esm|C8870,ccAFDSSE001-DweSanctuary.esm|804
+RULE 110 112 95 50 | FT=MiscItem KWALL=IconDwarvenScrap
+RULE 111 117 102 77 | FT=Book FID=Skyrim.esm|2D513,Skyrim.esm|48782,Dawnguard.esm|126DC,Dawnguard.esm|11A13,Dawnguard.esm|118F9
+RULE 103 255 135 0 | FT=Spell FID=Dawnguard.esm|38B5,Dawnguard.esm|3F52,Dawnguard.esm|38B6
+RULE 103 255 135 0 | FT=Spell EFFKWANY=IconMagicSun,MAG_MagicDamageSun
+RULE 185 98 166 54 | FT=Spell FID=Dragonborn.esm|1D74B
+RULE 185 98 166 54 | FT=Spell EFFKWANY=IconMagicPoison,MAG_MagicDamagePoison
+RULE 106 205 203 196 | FT=Spell FID=Dragonborn.esm|1772D
+RULE 106 205 203 196 | FT=Spell EFFKWALL=IconMagicWind
+RULE 104 142 33 41 | FT=Spell EFFKWALL=IconMagicBlood
+RULE 105 56 97 197 | FT=Spell EFFKWALL=IconMagicWater
+RULE 102 133 90 65 | FT=Spell EFFKWALL=IconMagicEarth
+RULE 197 255 255 255 | FT=MiscItem FID=Skyrim.esm|28AD7 NOCOLOR
+RULE 158 255 255 255 | FT=MiscItem FID=Skyrim.esm|2C259,Skyrim.esm|2C25A NOCOLOR
+RULE 158 255 255 255 | FT=MiscItem FID=Skyrim.esm|C4F2E,ccASVSSE001-ALMSIVI.esm|82F,ccBGSSSE041-NetchLeather.esl|8A4,ccKRTSSE001_Altar.esl|806 NOCOLOR
+RULE 194 255 255 255 | FT=MiscItem FID=Skyrim.esm|2BAAB,ccKRTSSE001_Altar.esl|F04 NOCOLOR
+RULE 159 255 255 255 | FT=MiscItem FID=Skyrim.esm|457AB,Skyrim.esm|DC530,Skyrim.esm|DC52E,BeyondSkyrimMerchant.esp|13201,BeyondSkyrimMerchant.esp|13202 NOCOLOR
+RULE 153 255 255 255 | FT=MiscItem FID=Skyrim.esm|F1491,Skyrim.esm|CE70B,Skyrim.esm|E4897,Skyrim.esm|E3CB7 NOCOLOR
+RULE 137 255 255 255 | FT=MiscItem FID=Skyrim.esm|1CB34,Skyrim.esm|DA732,Skyrim.esm|DA733,Skyrim.esm|DA734,Skyrim.esm|DA735 NOCOLOR
+RULE 127 255 255 255 | FT=MiscItem FID=ccPEWSSE002-ArmsOfChaos.esl|827 NOCOLOR
+RULE 210 255 255 255 | FT=MiscItem FID=ccBGSSSE019-StaffofSheogorath.esl|80F,ccPEWSSE002-ArmsOfChaos.esl|81C,ccPEWSSE002-ArmsOfChaos.esl|823 NOCOLOR
+RULE 155 255 255 255 | FT=MiscItem FID=Dragonborn.esm|1AAD6,ccTWBSSE001-PuzzleDungeon.esm|8B2,ccTWBSSE001-PuzzleDungeon.esm|8B8,ccTWBSSE001-PuzzleDungeon.esm|8B9,ccTWBSSE001-PuzzleDungeon.esm|8BA,ccTWBSSE001-PuzzleDungeon.esm|8BB,ccTWBSSE001-PuzzleDungeon.esm|8BC,ccTWBSSE001-PuzzleDungeon.esm|8BD,ccTWBSSE001-PuzzleDungeon.esm|8BE,ccTWBSSE001-PuzzleDungeon.esm|8BF,ccTWBSSE001-PuzzleDungeon.esm|8C3,ccTWBSSE001-PuzzleDungeon.esm|8C4,ccTWBSSE001-PuzzleDungeon.esm|8C5 NOCOLOR
+RULE 114 255 255 255 | FT=MiscItem FID=Skyrim.esm|DABA9,Skyrim.esm|DABA7,Skyrim.esm|105177,Skyrim.esm|3292F,Skyrim.esm|200BA,Skyrim.esm|DABAB,Skyrim.esm|200B6,Skyrim.esm|105109,Skyrim.esm|E77BB,BSHeartland.esm|CE153,BSHeartland.esm|8AD49,BSHeartland.esm|67855
+RULE 114 255 255 255 | FT=MiscItem KWALL=IconInstrument
+RULE 115 255 255 255 | FT=MiscItem FID=Skyrim.esm|B08C7,Skyrim.esm|FBC3A,Skyrim.esm|FBC3B,Skyrim.esm|FBC3C,Skyrim.esm|FBC3D,ccBGSSSE025-AdvDSGS.esm|12DD3A,ccBGSSSE025-AdvDSGS.esm|12DD3B,ccBGSSSE025-AdvDSGS.esm|12DD3C
+RULE 115 255 255 255 | FT=MiscItem KWALL=IconJar
+RULE 174 255 255 255 | FT=Potion FID=ccKRTSSE001_Altar.esl|810
+RULE -1 255 255 255 | FT=MiscItem FID=ccKRTSSE001_Altar.esl|A6B ASSUBTYPE=Artifact
+RULE -1 255 255 255 | FT=MiscItem KWALL=IconArtifact ASSUBTYPE=Artifact
+RULE 171 31 251 255 | FT=Spell FID=BSHeartland.esm|72320,BSHeartland.esm|72311,BSHeartland.esm|7233B
+RULE 107 168 158 140 | FT=MiscItem FID=Wyrmstooth.esp|14F879
+RULE 107 168 158 140 | FT=MiscItem KWALL=IconBearTrap
+RULE 1 231 221 151 | FT=Armor KWALL=BoobiesArmorAbs
+RULE 1 104 86 41 | FT=Armor KWALL=BoobiesArmorAbsLight
+RULE 1 105 115 133 | FT=Armor KWALL=BoobiesArmorAbsHeavy
+RULE 2 231 222 151 | FT=Armor KWALL=BoobiesArmorArmlets
+RULE 2 104 86 41 | FT=Armor KWALL=BoobiesArmorArmletsLight
+RULE 2 105 115 133 | FT=Armor KWALL=BoobiesArmorArmletsHeavy
+RULE 3 231 221 151 | FT=Armor KWALL=BoobiesArmorBandolier
+RULE 3 104 86 41 | FT=Armor KWALL=BoobiesArmorBandolierLight
+RULE 3 105 115 133 | FT=Armor KWALL=BoobiesArmorBandolierHeavy
+RULE 4 231 222 151 | FT=Armor KWALL=BoobiesArmorBelt
+RULE 4 104 86 41 | FT=Armor KWALL=BoobiesArmorBeltLight
+RULE 4 105 115 133 | FT=Armor KWALL=BoobiesArmorBeltHeavy
+RULE 139 231 221 151 | FT=Armor KWALL=BoobiesArmorAccessoriesBook
+RULE 5 231 222 151 | FT=Armor KWALL=BoobiesArmorBra
+RULE 5 104 86 41 | FT=Armor KWALL=BoobiesArmorBraLight
+RULE 5 105 115 133 | FT=Armor KWALL=BoobiesArmorBraHeavy
+RULE 6 231 222 151 | FT=Armor KWALL=BoobiesArmorChoker
+RULE 6 104 86 41 | FT=Armor KWALL=BoobiesArmorChokerLight
+RULE 6 105 115 133 | FT=Armor KWALL=BoobiesArmorChokerHeavy
+RULE 67 193 136 77 | FT=Armor KWALL=BoobiesArmorTypeCompass
+RULE 7 231 222 151 | FT=Armor KWALL=BoobiesArmorCuisse
+RULE 7 104 86 41 | FT=Armor KWALL=BoobiesArmorCuisseLight
+RULE 7 105 115 133 | FT=Armor KWALL=BoobiesArmorCuisseHeavy
+RULE 9 231 222 151 | FT=Armor KWALL=BoobiesArmorEarrings
+RULE 9 104 86 41 | FT=Armor KWALL=BoobiesArmorEarringsLight
+RULE 9 105 115 133 | FT=Armor KWALL=BoobiesArmorEarringsHeavy
+RULE 66 231 221 151 | FT=Armor KWALL=BoobiesArmorEars
+RULE 10 104 86 41 | FT=Armor KWALL=BoobiesArmorEarsLight
+RULE 10 105 115 133 | FT=Armor KWALL=BoobiesArmorEarsHeavy
+RULE 11 231 222 151 | FT=Armor KWALL=BoobiesArmorEyemask
+RULE 11 104 86 41 | FT=Armor KWALL=BoobiesArmorEyemaskLight
+RULE 11 105 115 133 | FT=Armor KWALL=BoobiesArmorEyemaskHeavy
+RULE 12 231 222 151 | FT=Armor KWALL=BoobiesArmorFacemask
+RULE 12 104 86 41 | FT=Armor KWALL=BoobiesArmorFacemaskLight
+RULE 12 105 115 133 | FT=Armor KWALL=BoobiesArmorFacemaskHeavy
+RULE 13 231 222 151 | FT=Armor KWALL=BoobiesArmorFullmask
+RULE 13 104 86 41 | FT=Armor KWALL=BoobiesArmorFullmaskLight
+RULE 13 105 115 133 | FT=Armor KWALL=BoobiesArmorFullmaskHeavy
+RULE 14 231 222 151 | FT=Armor KWALL=BoobiesArmorGreaves
+RULE 14 104 86 41 | FT=Armor KWALL=BoobiesArmorGreavesLight
+RULE 14 105 115 133 | FT=Armor KWALL=BoobiesArmorGreavesHeavy
+RULE 15 231 222 151 | FT=Armor KWALL=BoobiesArmorHat
+RULE 15 104 86 41 | FT=Armor KWALL=BoobiesArmorHatLight
+RULE 15 105 115 133 | FT=Armor KWALL=BoobiesArmorHatHeavy
+RULE 16 231 222 151 | FT=Armor KWALL=BoobiesArmorHorns
+RULE 16 104 86 41 | FT=Armor KWALL=BoobiesArmorHornsLight
+RULE 16 105 115 133 | FT=Armor KWALL=BoobiesArmorHornsHeavy
+RULE 17 255 255 255 | FT=Armor KWALL=BoobiesArmorLantern NOCOLOR
+RULE 68 255 255 255 | FT=Armor KWALL=BoobiesArmorTypeMap NOCOLOR
+RULE 18 231 222 151 | FT=Armor KWALL=BoobiesArmorPanties
+RULE 18 104 86 41 | FT=Armor KWALL=BoobiesArmorPantiesLight
+RULE 18 105 115 133 | FT=Armor KWALL=BoobiesArmorPantiesHeavy
+RULE 19 231 222 151 | FT=Armor KWALL=BoobiesArmorPauldron
+RULE 19 104 86 41 | FT=Armor KWALL=BoobiesArmorPauldronLight
+RULE 19 105 115 133 | FT=Armor KWALL=BoobiesArmorPauldronHeavy
+RULE 20 231 222 151 | FT=Armor KWALL=BoobiesArmorPiercing
+RULE 20 104 86 41 | FT=Armor KWALL=BoobiesArmorPiercingLight
+RULE 20 105 115 133 | FT=Armor KWALL=BoobiesArmorPiercingHeavy
+RULE 21 231 221 151 | FT=Armor KWALL=BoobiesArmorPouch
+RULE 21 104 86 41 | FT=Armor KWALL=BoobiesArmorPouchLight
+RULE 21 105 115 133 | FT=Armor KWALL=BoobiesArmorPouchHeavy
+RULE 137 255 255 255 | FT=Armor KWALL=ArmorTypeLeftHandRing NOCOLOR
+RULE 22 231 221 151 | FT=Armor KWALL=BoobiesArmorRose
+RULE 22 104 86 41 | FT=Armor KWALL=BoobiesArmorRoseLight
+RULE 22 105 115 133 | FT=Armor KWALL=BoobiesArmorRoseHeavy
+RULE 23 231 222 151 | FT=Armor KWALL=BoobiesArmorScarf
+RULE 23 104 86 41 | FT=Armor KWALL=BoobiesArmorScarfLight
+RULE 23 105 115 133 | FT=Armor KWALL=BoobiesArmorScarfHeavy
+RULE 24 104 86 41 | FT=Armor KWALL=BoobiesArmorShoulderPad
+RULE 24 104 86 41 | FT=Armor KWALL=BoobiesArmorShoulderPadLight
+RULE 24 105 115 133 | FT=Armor KWALL=BoobiesArmorShoulderPadHeavy
+RULE 25 231 222 151 | FT=Armor KWALL=BoobiesArmorSkirt
+RULE 25 104 86 41 | FT=Armor KWALL=BoobiesArmorSkirtLight
+RULE 25 105 115 133 | FT=Armor KWALL=BoobiesArmorSkirtHeavy
+RULE 26 231 222 151 | FT=Armor KWALL=BoobiesArmorStockings
+RULE 26 104 86 41 | FT=Armor KWALL=BoobiesArmorStockingsLight
+RULE 26 105 115 133 | FT=Armor KWALL=BoobiesArmorStockingsHeavy
+RULE 27 231 221 151 | FT=Armor KWALL=BoobiesArmorTail
+RULE 27 104 86 41 | FT=Armor KWALL=BoobiesArmorTailLight
+RULE 27 105 115 133 | FT=Armor KWALL=BoobiesArmorTailHeavy
+RULE 28 231 222 151 | FT=Armor KWALL=BoobiesArmorTasset
+RULE 28 104 86 41 | FT=Armor KWALL=BoobiesArmorTassetLight
+RULE 28 105 115 133 | FT=Armor KWALL=BoobiesArmorTassetHeavy
+RULE 29 231 222 151 | FT=Armor KWALL=BoobiesArmorTattoo
+RULE 29 104 86 41 | FT=Armor KWALL=BoobiesArmorTattooLight
+RULE 29 105 115 133 | FT=Armor KWALL=BoobiesArmorTattooHeavy
+RULE 30 231 222 151 | FT=Armor KWALL=BoobiesArmorTrousers
+RULE 30 104 86 41 | FT=Armor KWALL=BoobiesArmorTrousersLight
+RULE 30 105 115 133 | FT=Armor KWALL=BoobiesArmorTrousersHeavy
+RULE 31 231 222 151 | FT=Armor KWALL=BoobiesArmorBikini
+RULE 31 104 86 41 | FT=Armor KWALL=BoobiesArmorBikiniLight
+RULE 31 105 115 133 | FT=Armor KWALL=BoobiesArmorBikiniHeavy
+RULE 31 231 222 151 | FT=Armor KWALL=BoobiesArmorUnderwear
+RULE 31 104 86 41 | FT=Armor KWALL=BoobiesArmorUnderwearLight
+RULE 31 105 115 133 | FT=Armor KWALL=BoobiesArmorUnderwearHeavy
+RULE 101 231 222 151 | FT=Armor KWALL=BoobiesArmorCloak
+RULE 101 104 86 41 | FT=Armor KWALL=BoobiesArmorCloakLight
+RULE 101 105 115 133 | FT=Armor KWALL=BoobiesArmorCloakHeavy
+RULE 152 231 222 151 | FT=Armor KWALL=BoobiesArmorSpineGuard
+RULE 152 104 86 41 | FT=Armor KWALL=BoobiesArmorSpineGuardLight
+RULE 152 105 115 133 | FT=Armor KWALL=BoobiesArmorSpineGuardHeavy
+RULE 152 231 222 151 | FT=Armor KWALL=BoobiesArmorSternum
+RULE 152 104 86 41 | FT=Armor KWALL=BoobiesArmorSternumLight
+RULE 152 105 115 133 | FT=Armor KWALL=BoobiesArmorSternumHeavy
+RULE 158 231 221 151 | FT=Armor KWALL=BoobiesArmorPouchPotion
+RULE 168 231 222 151 | FT=Armor KWALL=BoobiesArmorHeadGear
+RULE 168 104 86 41 | FT=Armor KWALL=BoobiesArmorHeadGearLight
+RULE 168 105 115 133 | FT=Armor KWALL=BoobiesArmorHeadGearHeavy
+RULE 174 231 222 151 | FT=Armor KWALL=BoobiesArmorAccessories
+RULE 174 104 86 41 | FT=Armor KWALL=BoobiesArmorAccessoriesLight
+RULE 174 105 115 133 | FT=Armor KWALL=BoobiesArmorAccessoriesHeavy
+RULE 196 231 221 151 | FT=Armor KWALL=BoobiesArmorPouchStamina
+RULE 196 231 221 151 | FT=Armor KWALL=BoobiesArmorAccessoriesStamina
+RULE 78 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeBladeStaff NOCOLOR
+RULE 79 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeClaws NOCOLOR
+RULE 80 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeGiantBlade NOCOLOR
+RULE 81 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeGlaive NOCOLOR
+RULE 82 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeGun NOCOLOR
+RULE 83 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeHalberd NOCOLOR
+RULE 207 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeJavelin NOCOLOR
+RULE 84 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeKatana NOCOLOR
+RULE 85 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeKnuckles NOCOLOR
+RULE 86 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeLance NOCOLOR
+RULE 87 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeNodachi NOCOLOR
+RULE 88 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypePike NOCOLOR
+RULE 89 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeQuarterstaff NOCOLOR
+RULE 90 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeRapier NOCOLOR
+RULE 91 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeSaber NOCOLOR
+RULE 92 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeScythe NOCOLOR
+RULE 93 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeSpear NOCOLOR
+RULE 94 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeTanto NOCOLOR
+RULE 95 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeTrident NOCOLOR
+RULE 96 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeTwinblade NOCOLOR
+RULE 97 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeTwinSword NOCOLOR
+RULE 98 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeWakizashi NOCOLOR
+RULE 99 255 255 255 | FT=Weapon KWALL=BoobiesWeapTypeWhip NOCOLOR
+RULE 32 161 64 64 | FT=Book FID=Skyrim.esm|10F766,Skyrim.esm|10F769,Skyrim.esm|10F76A,Skyrim.esm|10F76B,Skyrim.esm|10F76C,Skyrim.esm|10F76D,Skyrim.esm|10F76E,Skyrim.esm|10F76F,Skyrim.esm|10F770,Skyrim.esm|10F771,Skyrim.esm|10F772,Skyrim.esm|10F773,Skyrim.esm|10F774,Skyrim.esm|10F775,Skyrim.esm|10F776,Skyrim.esm|10F777,Skyrim.esm|10F778,Skyrim.esm|10F779,Skyrim.esm|10F77A,Skyrim.esm|10F77B,Skyrim.esm|10F77C,Skyrim.esm|10F77D,Skyrim.esm|10F77E,Skyrim.esm|10F77F,Skyrim.esm|10F780,Skyrim.esm|10F781,Skyrim.esm|10F782,Skyrim.esm|10F783,Skyrim.esm|10F784,Skyrim.esm|10F785,Skyrim.esm|10F786,Flames of Coldharbour.esp|8F8,Flames of Coldharbour.esp|8F9,Flames of Coldharbour.esp|8FA,Flames of Coldharbour.esp|8FB,Flames of Coldharbour.esp|8FC,Flames of Coldharbour.esp|8FD,Flames of Coldharbour.esp|8FE,Flames of Coldharbour.esp|8FF,Flames of Coldharbour.esp|900,Flames of Coldharbour.esp|901,Flames of Coldharbour.esp|902,Flames of Coldharbour.esp|903,Flames of Coldharbour.esp|904,Flames of Coldharbour.esp|905,Flames of Coldharbour.esp|906,Flames of Coldharbour.esp|907,Flames of Coldharbour.esp|908,Flames of Coldharbour.esp|909,Flames of Coldharbour.esp|90A,Flames of Coldharbour.esp|90B,Flames of Coldharbour.esp|90C,Flames of Coldharbour.esp|90D,Flames of Coldharbour.esp|90E,Flames of Coldharbour.esp|90F,Flames of Coldharbour.esp|910,Flames of Coldharbour.esp|911,Flames of Coldharbour.esp|963,Flames of Coldharbour.esp|964,Flames of Coldharbour.esp|965,Flames of Coldharbour.esp|966
+RULE 34 255 255 255 | FT=Book KWALL=BoobiesBookTypeCrafting NOCOLOR
+RULE 35 102 60 47 | FT=Book KWALL=BoobiesBookTypeSpellNecrom
+RULE 35 102 60 47 | FT=Book FID=Necrom.esp|8AE,Necrom.esp|8AF,Necrom.esp|8B0,Necrom.esp|8B1,Necrom.esp|8B2,Necrom.esp|8B3,Necrom.esp|8B4,Necrom.esp|8B5,Necrom.esp|8B6,Necrom.esp|8B7,Necrom.esp|8B8,Necrom.esp|8BA,Necrom.esp|8BB,Necrom.esp|8BC,Necrom.esp|8BD,Necrom.esp|8BE,Necrom.esp|8FA,Necrom.esp|926,Necrom.esp|927,Necrom.esp|928,Necrom.esp|929,Necrom.esp|92A,Necrom.esp|948,Necrom.esp|94F,Necrom.esp|95F,Necrom.esp|978
+RULE 139 104 86 41 | FT=Book KWALL=BoobiesBookTypeJournal
+RULE 140 104 86 41 | FT=Book KWALL=BoobiesBookTypeMap
+RULE 36 180 180 84 | FT=Book KWALL=BoobiesBookTypeMissive
+RULE 37 255 255 255 | FT=Book KWALL=BoobiesBookTypeRecipe NOCOLOR
+RULE 38 134 197 66 | FT=Book KWALL=BoobiesBookTypeSpellAlteration
+RULE 38 134 197 66 | FT=Book FID=Grey_Quarter_Overhaul.esp|081BF7,Darkstorm.esp|001FB5,Darkstorm.esp|001FB6,Darkstorm.esp|001FBB,Darkstorm.esp|001FBC,IHarvest.esl|819,MysticismMagic.esp|10D267,MysticismMagic.esp|10D268,MysticismMagic.esp|1901E6,MysticismMagic.esp|3C756C,MysticismMagic.esp|3C756D,MysticismMagic.esp|3C756E,MysticismMagic.esp|3C756F,MysticismMagic.esp|3C7571,MysticismMagic.esp|3C7573,MysticismMagic.esp|3C7574,MysticismMagic.esp|3C7575,MysticismMagic.esp|3C7576,MysticismMagic.esp|3C7577,MysticismMagic.esp|3C7579,MysticismMagic.esp|3C757C,MysticismMagic.esp|3C757D,MysticismMagic.esp|3C757E,MysticismMagic.esp|3C757F,MysticismMagic.esp|3C7582,MysticismMagic.esp|3C7583,MysticismMagic.esp|3C7584,MysticismMagic.esp|3C7585,MysticismMagic.esp|3C7586,MysticismMagic.esp|3C7587,MysticismMagic.esp|3C7588,MysticismMagic.esp|3C7589,MysticismMagic.esp|3C758B,MysticismMagic.esp|3E5C17,MysticismMagic.esp|4B0649,MysticismMagic.esp|4B0683,MysticismMagic.esp|4B0684,MysticismMagic.esp|4F758F,MysticismMagic.esp|7DA929,MysticismMagic.esp|8AF367,MysticismMagic.esp|8C3768,MysticismMagic.esp|9E9214,MysticismMagic.esp|AC7E8C,MysticismMagic.esp|C671AD,MysticismMagic.esp|C857B4,MysticismMagic.esp|FF19E1,Vulcano.esp|846,Stellaris.esp|846,Stellaris.esp|911,Stellaris.esp|91C,Stellaris.esp|924,Stellaris.esp|92B,Stellaris.esp|932,Bloodmoon.esp|83F,Bloodmoon.esp|87F,Bloodmoon.esp|88D,Bloodmoon.esp|8C5,Abyss.esp|843,Lunaris.esp|880,Natura.esp|843,Natura.esp|872,Natura.esp|879,Natura.esp|87A,Natura.esp|87B,Natura.esp|8B7,Natura.esp|8DE,Natura.esp|926,Natura.esp|936,Natura.esp|997,Natura.esp|99E,Natura.esp|9CC,Natura.esp|9CD,Natura.esp|9DD,Natura.esp|9DE,Natura.esp|A06,Natura.esp|A2B,Natura.esp|A2C,Natura.esp|A44,Natura.esp|A4B,Natura.esp|A63,Arcanum.esp|90CD9F,Darkstorm.esp|001FBB,Darkstorm.esp|001FBC
+RULE 39 179 97 211 | FT=Book KWALL=BoobiesBookTypeSpellConjuration
+RULE 39 179 97 211 | FT=Book FID=Darkstorm.esp|001FB7,Darkstorm.esp|001FB8,Darkstorm.esp|001FB9,Darkstorm.esp|001FBA,Darkstorm.esp|002012,Darkstorm.esp|002013,Darkstorm.esp|002014,Darkstorm.esp|002015,MysticismMagic.esp|00FFFF,MysticismMagic.esp|010000,MysticismMagic.esp|01F2F8,MysticismMagic.esp|01F2F9,MysticismMagic.esp|4E312A,MysticismMagic.esp|4E312B,MysticismMagic.esp|4E312C,MysticismMagic.esp|4E312D,MysticismMagic.esp|4E312F,MysticismMagic.esp|4E3131,MysticismMagic.esp|4E3133,MysticismMagic.esp|4E3134,MysticismMagic.esp|4E3137,MysticismMagic.esp|4E3138,MysticismMagic.esp|4E3139,MysticismMagic.esp|4E313A,MysticismMagic.esp|4E313C,MysticismMagic.esp|4E313D,MysticismMagic.esp|4E3142,MysticismMagic.esp|4E3145,MysticismMagic.esp|4E3146,MysticismMagic.esp|4E314F,MysticismMagic.esp|E7FEC7,MysticismMagic.esp|E7FECC,MysticismMagic.esp|E7FED1,MysticismMagic.esp|E7FEDA,MysticismMagic.esp|45536F,MysticismMagic.esp|455371,MysticismMagic.esp|4B067E,MysticismMagic.esp|4E314C,MysticismMagic.esp|4E314D,MysticismMagic.esp|4E314F,MysticismMagic.esp|DC48DD,MysticismMagic.esp|DC99E2,MysticismMagic.esp|DD3BEE,MysticismMagic.esp|DED0F8,MysticismMagic.esp|E01501,Vulcano.esp|941,Vulcano.esp|970,Vulcano.esp|971,Stellaris.esp|941,Flames of Coldharbour.esp|943,Flames of Coldharbour.esp|944,Bloodmoon.esp|8A9,Abyss.esp|B15,Abyss.esp|B16,Natura.esp|948,Natura.esp|949,Natura.esp|94A,Natura.esp|961,Natura.esp|962,Natura.esp|980,Natura.esp|981,Natura.esp|982,Natura.esp|983,Natura.esp|984,Natura.esp|985,Natura.esp|986,Natura.esp|987,Natura.esp|988,Natura.esp|989,Natura.esp|98A,Natura.esp|98B,Natura.esp|98C,Natura.esp|9AF,Natura.esp|9EE,Natura.esp|9EF,Natura.esp|A20,Natura.esp|CD0,Natura.esp|CD1,Natura.esp|CD2,Natura.esp|CD3,Arcanum.esp|07AE25,Arcanum.esp|07AE26,Arcanum.esp|07AE28,Arcanum.esp|07AE29,Arcanum.esp|07AE2A,Arcanum.esp|07AE2B,Arcanum.esp|07AE2C,Arcanum.esp|07AE2D,Arcanum.esp|07AE2E,Arcanum.esp|07AE2F,Arcanum.esp|07AE30,Arcanum.esp|07AE31,Arcanum.esp|07AE32,Arcanum.esp|07AE33,Arcanum.esp|07AE34,Arcanum.esp|07AE35,Arcanum.esp|07AE36,Arcanum.esp|07AE37,Arcanum.esp|07AE38,Arcanum.esp|07AE39,Arcanum.esp|07AE3A,Arcanum.esp|07AE3B,Arcanum.esp|07AE3C,Arcanum.esp|07AE3D,Arcanum.esp|07AE3E,Arcanum.esp|07AE3F,Arcanum.esp|07AE40,Arcanum.esp|07AE41,Arcanum.esp|07AE42,Arcanum.esp|07AE43,Arcanum.esp|07AE44,Arcanum.esp|07AE45,Arcanum.esp|07AE46,Darkstorm.esp|001FB7,Darkstorm.esp|001FB8,Darkstorm.esp|001FB9,Darkstorm.esp|001FBA,Darkstorm.esp|002012,Darkstorm.esp|002013,Darkstorm.esp|002014,Darkstorm.esp|002015,GargoyleBlood.esp|014CC8,GargoyleBlood.esp|014CC9,GargoyleBlood.esp|01746C,INFERNAL FLAME.esp|05213D,INFERNAL FLAME.esp|3F9F6F,INFERNAL FLAME.esp|44231F,INFERNAL FLAME.esp|6A62C1,INFERNAL FLAME.esp|A8BAD0,INFERNAL FLAME.esp|A8BAD2,ktsummons.esp|0291CC,ktsummons.esp|04783C,ktsummons.esp|09DAF6,ktsummons.esp|0B7052
+RULE 40 225 47 47 | FT=Book KWALL=BoobiesBookTypeSpellDestruction
+RULE 40 225 47 47 | FT=Book FID=Astral.esl|854,Astral.esl|855,Astral.esl|856,Astral.esl|857,Astral.esl|858,Astral.esl|859,Astral.esl|85A,Astral.esl|85B,Astral.esl|85C,Astral.esl|85D,Astral.esl|85E,Astral.esl|85F,Astral.esl|860,Astral.esl|861,Astral.esl|862,Astral.esl|863,Astral.esl|864,Astral.esl|865,Astral.esl|866,Astral.esl|867,Astral.esl|8D3,Astral.esl|8D4,Astral.esl|8DA,Astral.esl|8DF,Darkstorm.esp|001FB0,Darkstorm.esp|001FB1,Darkstorm.esp|001FB2,Darkstorm.esp|001FB4,Darkstorm.esp|002016,Darkstorm.esp|002017,Darkstorm.esp|002018,Darkstorm.esp|002019,MysticismMagic.esp|1A96F7,MysticismMagic.esp|1AE803,MysticismMagic.esp|1AE805,MysticismMagic.esp|1B8A13,MysticismMagic.esp|1B8A16,MysticismMagic.esp|1D7033,MysticismMagic.esp|1D7035,MysticismMagic.esp|1D7036,MysticismMagic.esp|1D7037,MysticismMagic.esp|1D7038,MysticismMagic.esp|1DC13A,MysticismMagic.esp|2A19B1,MysticismMagic.esp|2E8871,MysticismMagic.esp|36C2DC,MysticismMagic.esp|36C2DD,MysticismMagic.esp|36C2DE,MysticismMagic.esp|36C2E0,MysticismMagic.esp|36C2E8,MysticismMagic.esp|3A3E0B,MysticismMagic.esp|3A3E0C,MysticismMagic.esp|3A3E10,MysticismMagic.esp|46469C,MysticismMagic.esp|46469D,MysticismMagic.esp|478AAA,MysticismMagic.esp|478AAB,MysticismMagic.esp|478AAC,MysticismMagic.esp|478AAD,MysticismMagic.esp|478AAE,MysticismMagic.esp|478AB3,MysticismMagic.esp|478AB4,MysticismMagic.esp|478AB5,MysticismMagic.esp|478AB7,MysticismMagic.esp|478AB8,MysticismMagic.esp|9F851D,MysticismMagic.esp|9F851E,MysticismMagic.esp|9F851F,MysticismMagic.esp|A30050,MysticismMagic.esp|C4DC38,MysticismMagic.esp|CDB97E,MysticismMagic.esp|CF9FB0,Vulcano.esp|845,Vulcano.esp|847,Vulcano.esp|848,Vulcano.esp|849,Vulcano.esp|84A,Vulcano.esp|84B,Vulcano.esp|84C,Vulcano.esp|84D,Vulcano.esp|84E,Vulcano.esp|84F,Vulcano.esp|850,Vulcano.esp|851,Vulcano.esp|852,Vulcano.esp|853,Vulcano.esp|854,Vulcano.esp|855,Vulcano.esp|8EE,Vulcano.esp|966,Vulcano.esp|9AC,Vulcano.esp|9C6,Flames of Coldharbour.esp|89D,Flames of Coldharbour.esp|89E,Flames of Coldharbour.esp|89F,Flames of Coldharbour.esp|8A0,Flames of Coldharbour.esp|8A1,Flames of Coldharbour.esp|8A2,Flames of Coldharbour.esp|8A3,Flames of Coldharbour.esp|8A4,Flames of Coldharbour.esp|8A5,Flames of Coldharbour.esp|8A6,Flames of Coldharbour.esp|8A7,Flames of Coldharbour.esp|8A8,Flames of Coldharbour.esp|8A9,Flames of Coldharbour.esp|8AA,Flames of Coldharbour.esp|8AB,Flames of Coldharbour.esp|8AC,Bloodmoon.esp|824,Bloodmoon.esp|825,Bloodmoon.esp|82D,Bloodmoon.esp|82E,Bloodmoon.esp|840,Bloodmoon.esp|841,Bloodmoon.esp|84C,Bloodmoon.esp|85D,Bloodmoon.esp|863,Bloodmoon.esp|8A5,Bloodmoon.esp|8A6,Bloodmoon.esp|8A7,Bloodmoon.esp|8A8,Abyss.esp|811,Abyss.esp|82C,Abyss.esp|82D,Abyss.esp|82E,Abyss.esp|832,Abyss.esp|842,Abyss.esp|86D,Abyss.esp|873,Abyss.esp|975,Abyss.esp|AAE,Abyss.esp|AAF,Abyss.esp|AB0,Abyss.esp|AB1,Abyss.esp|BA1,Abyss.esp|BB3,Abyss.esp|BD3,Abyss.esp|BF0,Natura.esp|AB7,Natura.esp|AB8,Natura.esp|ABE,Natura.esp|AFF,Natura.esp|B0B,Natura.esp|B12,Natura.esp|B22,Natura.esp|B2D,Natura.esp|B2E,Natura.esp|B3C,Natura.esp|B44,Natura.esp|B59,Natura.esp|B71,Natura.esp|B72,Natura.esp|B73,Natura.esp|B74,Natura.esp|B75,Natura.esp|B83,Natura.esp|C52,Natura.esp|C53,Natura.esp|C54,Natura.esp|C55,Natura.esp|C56,Natura.esp|C57,Natura.esp|C58,Natura.esp|C59,Natura.esp|C5A,Natura.esp|C5B,Natura.esp|C5C,Natura.esp|C5D,Natura.esp|C86,Natura.esp|C87,Natura.esp|C88,Natura.esp|C89,Natura.esp|C8A,Natura.esp|C8B,Arcanum.esp|2B136A,Arcanum.esp|2B136B,Arcanum.esp|2B136C,Arcanum.esp|2B136E,Arcanum.esp|2B136F,Arcanum.esp|2B1370,Arcanum.esp|2B1371,Arcanum.esp|2B1373,Arcanum.esp|2B1374,Arcanum.esp|2B1376,Arcanum.esp|2CF998,Arcanum.esp|2D9BA1,Arcanum.esp|2D9BAA,Arcanum.esp|2E8EB8,Arcanum.esp|2F30C9,Arcanum.esp|3209F6,Arcanum.esp|32FD03,Arcanum.esp|334E0A,Arcanum.esp|339F15,Arcanum.esp|349231,Arcanum.esp|34E33E,Arcanum.esp|36C95C,Arcanum.esp|37BC75,Arcanum.esp|37BC7A,Arcanum.esp|385E8B,Arcanum.esp|3951A1,Arcanum.esp|3BD9BA,Arcanum.esp|3C2AC6,Arcanum.esp|413B02,Arcanum.esp|413B03,Arcanum.esp|43C324,Arcanum.esp|44B636,Arcanum.esp|44B63D,Arcanum.esp|45A95A,Arcanum.esp|5D2885,Arcanum.esp|6238FF,Arcanum.esp|62DB0E,Arcanum.esp|632C27,Arcanum.esp|632C28,Arcanum.esp|632C2E,Arcanum.esp|67EC06,Arcanum.esp|730053,Arcanum.esp|865A60,Arcanum.esp|865A61,Arcanum.esp|8D5187,Arcanum.esp|8D5188,Arcanum.esp|8D5191,Arcanum.esp|8DA2C1,Arcanum.esp|8DA2C2,Arcanum.esp|8E95F0,Arcanum.esp|90CD1D,Arcanum.esp|968124,Arcanum.esp|99FC70,Arcanum.esp|B1BA52,Arcanum.esp|B1BA53,Arcanum.esp|B442BF,Arcanum.esp|BAE8C2,Arcanum.esp|C897EE,Arcanum.esp|CE4CAC,Darkstorm.esp|001FB0,Darkstorm.esp|001FB1,Darkstorm.esp|001FB2,Darkstorm.esp|001FB4,Darkstorm.esp|002016,Darkstorm.esp|002017,Darkstorm.esp|002018,Darkstorm.esp|002019,INFERNAL FLAME.esp|03D4EF,INFERNAL FLAME.esp|03D4F0,INFERNAL FLAME.esp|03D4F1,INFERNAL FLAME.esp|093837,INFERNAL FLAME.esp|0A7CB8,INFERNAL FLAME.esp|0B1EF7,INFERNAL FLAME.esp|0B1EF8,INFERNAL FLAME.esp|0B1EF9,INFERNAL FLAME.esp|0B1EFA,INFERNAL FLAME.esp|0B1EFB,INFERNAL FLAME.esp|0B1EFC,INFERNAL FLAME.esp|0B1EFD,INFERNAL FLAME.esp|0B1EFE,INFERNAL FLAME.esp|0B1EFF,INFERNAL FLAME.esp|0B1F00,INFERNAL FLAME.esp|2C2D83,INFERNAL FLAME.esp|A8BADA,INFERNAL FLAME.esp|A8BADD,INFERNAL FLAME.esp|A8BAE3,INFERNAL FLAME.esp|A8BAE6,INFERNAL FLAME.esp|A8BAEF
+RULE 41 43 155 227 | FT=Book KWALL=BoobiesBookTypeSpellIllusion
+RULE 41 43 155 227 | FT=Book FID=MysticismMagic.esp|176CD1,MysticismMagic.esp|3E5C0C,MysticismMagic.esp|3E5C0D,MysticismMagic.esp|3E5C0F,MysticismMagic.esp|3E5C10,MysticismMagic.esp|3E5C12,MysticismMagic.esp|3E5C13,MysticismMagic.esp|3E5C14,MysticismMagic.esp|3E5C15,MysticismMagic.esp|3E5C16,MysticismMagic.esp|3E5C18,MysticismMagic.esp|3E5C1B,MysticismMagic.esp|3E5C1C,MysticismMagic.esp|3E5C1D,MysticismMagic.esp|3E5C1E,MysticismMagic.esp|3E5C1F,MysticismMagic.esp|4B0632,MysticismMagic.esp|4B0633,MysticismMagic.esp|4B0635,MysticismMagic.esp|4B063D,MysticismMagic.esp|4B063F,MysticismMagic.esp|705EB3,MysticismMagic.esp|A9A576,MysticismMagic.esp|B467E4,MysticismMagic.esp|B4B8F8,Abyss.esp|ABF,Abyss.esp|AD4,Abyss.esp|AD5,Abyss.esp|AD6,Abyss.esp|AD7,Abyss.esp|AD8,Abyss.esp|AD9,Abyss.esp|B8B,Abyss.esp|B8C,Abyss.esp|BA9,Natura.esp|BCE,Natura.esp|BDC,Natura.esp|BDD,Natura.esp|BDE,Natura.esp|BDF,Natura.esp|BFB,Natura.esp|BFC,Natura.esp|BFD,Natura.esp|BFE,Natura.esp|BFF,Arcanum.esp|07FF7D,Arcanum.esp|07FF7E,Arcanum.esp|07FF7F,Arcanum.esp|07FF80,Arcanum.esp|AA7262,Arcanum.esp|AA7263,Arcanum.esp|AA7264,Arcanum.esp|AA7265,Arcanum.esp|AA7266,Arcanum.esp|AA7267,Arcanum.esp|AA7269,Arcanum.esp|AA726A,Arcanum.esp|AA726B,Arcanum.esp|AA726C,Arcanum.esp|AA726D,Arcanum.esp|AA726E,Arcanum.esp|AA726F,Arcanum.esp|AA7270,Arcanum.esp|B4E4D9,Arcanum.esp|C47059,Arcanum.esp|C47060,Arcanum.esp|C47061,Arcanum.esp|C47062,Arcanum.esp|C47063,Arcanum.esp|C47064,Arcanum.esp|C47065,Arcanum.esp|C47066,Arcanum.esp|C47067,Arcanum.esp|C47068,Arcanum.esp|C47069,Arcanum.esp|C4706A,Arcanum.esp|C4706B,Arcanum.esp|C4706C,Arcanum.esp|C4706E,Arcanum.esp|C4706F,Arcanum.esp|C47070,Arcanum.esp|C47071,Arcanum.esp|C47072,Arcanum.esp|C47085,Arcanum.esp|C7A270,Arcanum.esp|C897EF,Arcanum.esp|C897F0,Arcanum.esp|C897F2,Arcanum.esp|C897F3,Arcanum.esp|CD07D7,Arcanum.esp|CDFB3D,Arcanum.esp|CDFB46,Arcanum.esp|D4010C,Arcanum.esp|D638F3,Arcanum.esp|D638F4,Arcanum.esp|D638FB,Arcanum.esp|D638FF,Arcanum.esp|DB9CBB,Arcanum.esp|DB9CC4,Arcanum.esp|DB9CC5
+RULE 42 245 215 48 | FT=Book KWALL=BoobiesBookTypeSpellRestoration
+RULE 42 245 215 48 | FT=Book FID=MysticismMagic.esp|209A7E,MysticismMagic.esp|209A83,MysticismMagic.esp|209A84,MysticismMagic.esp|209A85,MysticismMagic.esp|209A86,MysticismMagic.esp|209A87,MysticismMagic.esp|209A88,MysticismMagic.esp|209A89,MysticismMagic.esp|2508CA,MysticismMagic.esp|2508CC,MysticismMagic.esp|2508CF,MysticismMagic.esp|2508D0,MysticismMagic.esp|25FC02,MysticismMagic.esp|36C2C5,MysticismMagic.esp|3E0AA9,MysticismMagic.esp|3E0AAB,MysticismMagic.esp|3E0AAF,MysticismMagic.esp|3E0AB1,MysticismMagic.esp|3E0AB4,MysticismMagic.esp|3E0AB5,MysticismMagic.esp|3E0AB8,MysticismMagic.esp|3E0AB9,MysticismMagic.esp|482CE5,MysticismMagic.esp|48CF05,MysticismMagic.esp|48CF0E,MysticismMagic.esp|515B98,MysticismMagic.esp|78E9F8,MysticismMagic.esp|7D5825,MysticismMagic.esp|9AC5D5,MysticismMagic.esp|9AC5D6,MysticismMagic.esp|9AC5D8,MysticismMagic.esp|9AC5DA,MysticismMagic.esp|9E4105,MysticismMagic.esp|9F8520,MysticismMagic.esp|9F8521,MysticismMagic.esp|B18EB0,MysticismMagic.esp|B1DFBB,MysticismMagic.esp|B1DFBE,MysticismMagic.esp|CCC63C,MysticismMagic.esp|D278E4,MysticismMagic.esp|D45F29,MysticismMagic.esp|DBA6D4,MysticismMagic.esp|F21F4B,MysticismMagic.esp|F3635E,MysticismMagic.esp|F3636C,MysticismMagic.esp|F3637E,Stellaris.esp|845,Stellaris.esp|847,Stellaris.esp|848,Stellaris.esp|849,Stellaris.esp|84A,Stellaris.esp|84B,Stellaris.esp|84C,Stellaris.esp|84D,Stellaris.esp|84E,Stellaris.esp|84F,Stellaris.esp|850,Stellaris.esp|851,Stellaris.esp|852,Stellaris.esp|853,Stellaris.esp|854,Stellaris.esp|855,Stellaris.esp|8EE,Stellaris.esp|8F7,Stellaris.esp|8F8,Stellaris.esp|8F9,Stellaris.esp|8FA,Stellaris.esp|8FB,Stellaris.esp|958,Lunaris.esp|82A,Lunaris.esp|82B,Lunaris.esp|82C,Lunaris.esp|82D,Lunaris.esp|82E,Lunaris.esp|83A,Lunaris.esp|843,Lunaris.esp|84F,Lunaris.esp|85A,Lunaris.esp|85F,Lunaris.esp|863,Lunaris.esp|870,Lunaris.esp|871,Lunaris.esp|872,Lunaris.esp|873,Natura.esp|80B,Natura.esp|83C,Natura.esp|848,Natura.esp|849,Natura.esp|860,Natura.esp|861,Natura.esp|882,Natura.esp|88F,Natura.esp|890,Natura.esp|89C,Natura.esp|89D,Natura.esp|89E,Natura.esp|89F,Natura.esp|8A0,Natura.esp|8FE,Natura.esp|8FF,Natura.esp|900,Natura.esp|901,Natura.esp|908,Natura.esp|910,Natura.esp|C10,Natura.esp|C4E,Natura.esp|C4F,Natura.esp|C50,Natura.esp|C51,Natura.esp|C64,Natura.esp|C85,Natura.esp|F91,Arcanum.esp|07FF74,Arcanum.esp|07FF78,Arcanum.esp|07FF79,Arcanum.esp|07FF7A,Arcanum.esp|07FF7B,Arcanum.esp|07FF7C,Arcanum.esp|6CAB8B,Arcanum.esp|6CAB8C,Arcanum.esp|6CAB8D,Arcanum.esp|6CAB8E,Arcanum.esp|6CAB8F,Arcanum.esp|6CAB90,Arcanum.esp|6CAB91,Arcanum.esp|720D1F,Arcanum.esp|720D20,Arcanum.esp|720D21,Arcanum.esp|720D22,Arcanum.esp|720D23,Arcanum.esp|720D24,Arcanum.esp|720D25,Arcanum.esp|720D26,Arcanum.esp|720D27,Arcanum.esp|720D28,Arcanum.esp|725E3D,Arcanum.esp|73005A,Arcanum.esp|73005B,Arcanum.esp|73005C,Arcanum.esp|75D9B3,Arcanum.esp|75D9B4,Arcanum.esp|75D9B5,Arcanum.esp|75D9B6,Arcanum.esp|75D9B7,Arcanum.esp|75D9B8,Arcanum.esp|75D9B9,Arcanum.esp|75D9BA,Arcanum.esp|75D9BB,Arcanum.esp|78621C,Arcanum.esp|78621D,Arcanum.esp|78621E,Arcanum.esp|78621F,Arcanum.esp|786220,Arcanum.esp|8B1A2C,Arcanum.esp|8B6B31,Arcanum.esp|8DA2A9,Arcanum.esp|8DA2AA,Arcanum.esp|8DA2AB,Arcanum.esp|8E95E9,Arcanum.esp|902B0E,Arcanum.esp|916FAD,Arcanum.esp|91C0F3,Arcanum.esp|921206,Arcanum.esp|92120F,Arcanum.esp|9305D0,Arcanum.esp|A05129,Arcanum.esp|CE4CAD,Arcanum.esp|D126CF,Arcanum.esp|D638F2
+RULE 111 117 102 77 | FT=Book FID=Skyrim.esm|2D513,Skyrim.esm|48782,Dawnguard.esm|126DC,Dawnguard.esm|11A13,Dawnguard.esm|118F9,3DNPC.esp|21FAB7,konahrik_accoutrements.esp|0F3E7B
+RULE -1 0 153 204 | FT=Weapon FID=Skyrim.esm|035369,LegacyoftheDragonborn.esm|73C72E
+RULE 0 0 153 204 | FT=Weapon FID=LegacyoftheDragonborn.esm|77AE27,Dawnguard.esm|000800
+RULE -1 0 153 204 | FT=Armor FID=Dawnguard.esm|00284D,LegacyoftheDragonborn.esm|77AE28,Reliquary of Myth.esp|20F32B
+RULE -1 0 153 204 | FT=Armor FID=ccmtysse001-knightsofthenine.esl|800,ccmtysse001-knightsofthenine.esl|801,LegacyoftheDragonborn.esm|166293,LegacyoftheDragonborn.esm|77AE4E,LegacyoftheDragonborn.esm|6ADCE2,DBM_CC_DivineCrusaderHOWPatch.esp|800
+RULE -1 0 153 204 | FT=Armor FID=ccmtysse001-knightsofthenine.esl|802,ccmtysse001-knightsofthenine.esl|803,LegacyoftheDragonborn.esm|166295,LegacyoftheDragonborn.esm|77AE50,LegacyoftheDragonborn.esm|6ADCE4,DBM_CC_DivineCrusaderHOWPatch.esp|802
+RULE -1 0 153 204 | FT=Armor FID=ccmtysse001-knightsofthenine.esl|804,ccmtysse001-knightsofthenine.esl|805,LegacyoftheDragonborn.esm|166292,LegacyoftheDragonborn.esm|77AE4F,LegacyoftheDragonborn.esm|6ADCE3,DBM_CC_DivineCrusaderHOWPatch.esp|801
+RULE -1 0 153 204 | FT=Armor FID=ccmtysse001-knightsofthenine.esl|806,ccmtysse001-knightsofthenine.esl|807,LegacyoftheDragonborn.esm|166294,LegacyoftheDragonborn.esm|77AE51,LegacyoftheDragonborn.esm|6ADCE5,DBM_CC_DivineCrusaderHOWPatch.esp|803
+RULE -1 0 153 204 | FT=Armor FID=ccmtysse001-knightsofthenine.esl|808,ccmtysse001-knightsofthenine.esl|809,LegacyoftheDragonborn.esm|1662A6,LegacyoftheDragonborn.esm|77AE52,LegacyoftheDragonborn.esm|6ADCE6,DBM_CC_DivineCrusaderHOWPatch.esp|804,DBM_CC_DivineCrusaderHOWPatch.esp|80E,DBM_CC_DivineCrusaderHOWPatch.esp|80F,DBM_CC_DivineCrusaderHOWPatch.esp|805,DBM_CC_DivineCrusaderHOWPatch.esp|80D
+RULE -1 0 153 204 | FT=Weapon FID=ccmtysse001-knightsofthenine.esl|80C,LegacyoftheDragonborn.esm|166834,LegacyoftheDragonborn.esm|6ADCED
+RULE -1 0 153 204 | FT=Weapon FID=ccmtysse001-knightsofthenine.esl|80D,LegacyoftheDragonborn.esm|166833,LegacyoftheDragonborn.esm|6ADCEC
+RULE -1 0 153 204 | FT=Weapon FID=ccbgssse006-stendarshammer.esl|D62,LegacyoftheDragonborn.esm|1253C1,LegacyoftheDragonborn.esm|73C71A
+RULE -1 0 153 204 | FT=Weapon FID=LegacyoftheDragonborn.esm|125E88,ccbgssse007-chrysamere.esl|d63,LegacyoftheDragonborn.esm|73C75E
+RULE 35 161 64 64 | FT=Book FID=Skyrim.esm|1A332
+RULE 88 161 64 64 | FT=Weapon FID=ccbgssse040-advobgobs.esl|810,LegacyoftheDragonborn.esm|11CBFB
+RULE 35 161 64 64 | FT=Book FID=Dragonborn.esm|16E2C,Dragonborn.esm|1E99E,Dragonborn.esm|1E99F,Dragonborn.esm|1E99D,Dragonborn.esm|1E99C,Dragonborn.esm|16E2D,Dragonborn.esm|16E22
+RULE 197 179 97 211 | FT=MiscItem FID=Skyrim.esm|28AD7
+RULE 197 161 64 64 | FT=SoulGem FID=Skyrim.esm|063B27
+RULE 197 255 255 255 | FT=SoulGem FID=LegacyoftheDragonborn.esm|166595
+RULE 45 161 64 64 | FT=Weapon FID=Skyrim.esm|4E4EE,LegacyoftheDragonborn.esm|77AE31
+RULE 48 161 64 64 | FT=Armor FID=ccbgssse020-graycowl.esl|D62,DBM_CC_GrayCowlReturnsPatchV2.esp|813
+RULE -1 161 64 64 | FT=Weapon FID=ccbgssse025-advdsgs.esm|00083B,LegacyoftheDragonborn.esm|125A1E,LegacyoftheDragonborn.esm|77AE36
+RULE 58 161 64 64 | FT=Weapon FID=ccbgssse016-umbra.esm|000D62,ccbgssse016-umbra.esm|00271A,DBM_CC_UmbraPatchV2.esp|810
+RULE -1 161 64 64 | FT=Weapon FID=ccbgssse067-daedinv.esm|000B5F,DBM_CC_TheCausePatch.esp|85D
+RULE -1 161 64 64 | FT=Weapon FID=ccbgssse004-ruinsedge.esl|D63,DBM_CC_RuinsEdgePatchV2.esp|804
+RULE -1 161 64 64 | FT=Weapon FID=ccbgssse025-advdsgs.esm|000BE3,DBM_CC_SaintsSeducersHOWPatch.esp|938
+RULE -1 161 64 64 | FT=Weapon FID=ccbgssse019-staffofsheogorath.esl|D62,DBM_CC_StaffofSheogorathPatchV2.esp|803
+RULE -1 161 64 64 | FT=Weapon FID=LegacyoftheDragonborn.esm|60ADC4,Skyrim.esm|01C4E6
+RULE 46 161 64 64 | FT=Weapon FID=Skyrim.esm|4A38F,Reliquary of Myth.esp|66E438,LegacyoftheDragonborn.esm|77AE33
+RULE 47 161 64 64 | FT=Armor FID=Skyrim.esm|52794,LegacyoftheDragonborn.esm|77AE30
+RULE -1 161 64 64 | FT=Weapon FID=Skyrim.esm|233E3,LegacyoftheDragonborn.esm|77AE3A
+RULE -1 161 64 64 | FT=Armor FID=Skyrim.esm|D2846,LegacyoftheDragonborn.esm|77AE41
+RULE 49 161 64 64 | FT=Weapon FID=Skyrim.esm|240D2,LegacyoftheDragonborn.esm|77AE37
+RULE -1 161 64 64 | FT=Weapon FID=Skyrim.esm|1CB36,LegacyoftheDragonborn.esm|77AE3C
+RULE -1 161 64 64 | FT=Armor FID=Skyrim.esm|2AC61,LegacyoftheDragonborn.esm|77AE3D
+RULE -1 161 64 64 | FT=Armor FID=Skyrim.esm|F82FE,Skyrim.esm|2AC60,LegacyoftheDragonborn.esm|89C2D7
+RULE -1 161 64 64 | FT=Armor FID=Skyrim.esm|2C37B,LegacyoftheDragonborn.esm|77AE3B
+RULE 56 161 64 64 | FT=MiscItem FID=Skyrim.esm|3A070
+RULE 56 255 255 255 | FT=MiscItem FID=LegacyoftheDragonborn.esm|16649D
+RULE -1 161 64 64 | FT=Weapon FID=Skyrim.esm|35066,LegacyoftheDragonborn.esm|6B2E46
+RULE 57 161 64 64 | FT=Armor FID=Skyrim.esm|45F96,LegacyoftheDragonborn.esm|77AE3F
+RULE 59 161 64 64 | FT=Weapon FID=Skyrim.esm|2ACD2,LegacyoftheDragonborn.esm|77AE42
+RULE 60 161 64 64 | FT=Weapon FID=Skyrim.esm|2AC6F,LegacyoftheDragonborn.esm|77AE43
+RULE 54 161 64 64 | FT=Weapon FID=Skyrim.esm|07A917,Skyrim.esm|0DEED7,Skyrim.esm|0F6524,Skyrim.esm|0F6525,Skyrim.esm|0F6526,Skyrim.esm|0F6527,LegacyoftheDragonborn.esm|001164
+RULE 55 161 64 64 | FT=Weapon FID=Skyrim.esm|07E5C3,Skyrim.esm|0F6529,Skyrim.esm|0F652A,Skyrim.esm|0F652B,Skyrim.esm|0F652C,LegacyoftheDragonborn.esm|001165
+RULE 52 161 64 64 | FT=Weapon FID=Dragonborn.esm|029A61,Dragonborn.esm|039FA6,Dragonborn.esm|039FAC,Dragonborn.esm|039FAD,Dragonborn.esm|03A3D4,Dragonborn.esm|03C0F8,Dragonborn.esm|03C0FE,Dragonborn.esm|03C0FF,Dragonborn.esm|03C100,Dragonborn.esm|03C101,Dragonborn.esm|03C102,LegacyoftheDragonborn.esm|77AE38
+RULE 51 161 64 64 | FT=Armor FID=Dragonborn.esm|02B0F9
+RULE 50 161 64 64 | FT=Armor FID=Dragonborn.esm|03D2AF
+RULE 53 161 64 64 | FT=Weapon FID=Dragonborn.esm|0397F6,Dragonborn.esm|039FB1,Dragonborn.esm|039FB4,Dragonborn.esm|03C0EB,Dragonborn.esm|03C0EC,Dragonborn.esm|03C0ED,Dragonborn.esm|03C0EE,Dragonborn.esm|03C0EF,Dragonborn.esm|03C0F0,LegacyoftheDragonborn.esm|77AE39
+RULE -1 161 64 64 | FT=Weapon FID=ArtifactsOfBoethiah.esp|BC4F
+RULE 43 161 64 64 | FT=Weapon FID=ArtifactsOfBoethiah.esp|D62,ArtifactsOfBoethiah.esp|D64
+RULE 44 161 64 64 | FT=Weapon FID=ArtifactsOfBoethiah.esp|D63,ArtifactsOfBoethiah.esp|D65
+RULE -1 161 64 64 | FT=Armor FID=ArtifactsOfBoethiah.esp|D66
+RULE -1 161 64 64 | FT=Weapon FID=ArtifactsOfBoethiah.esp|15A83
+RULE -1 161 64 64 | FT=Armor FID=ArtifactsOfBoethiah.esp|8FB5
+RULE -1 255 215 0 | FT=Weapon FID=Skyrim.esm|06A13C,LegacyoftheDragonborn.esm|77AE2A
+RULE -1 255 215 0 | FT=Weapon FID=ccbgssse008-wraithguard.esl|801,LegacyoftheDragonborn.esm|77AE29
+RULE -1 255 215 0 | FT=Armor FID=ccbgssse008-wraithguard.esl|D63,LegacyoftheDragonborn.esm|77AE2B
+RULE -1 255 215 0 | FT=Weapon FID=Dawnguard.esm|00575E,LegacyoftheDragonborn.esm|77AE22
+RULE -1 255 215 0 | FT=Armor FID=Dawnguard.esm|005759,LegacyoftheDragonborn.esm|77AE24
+RULE -1 255 215 0 | FT=Weapon FID=Dragonborn.esm|02C01A,LegacyoftheDragonborn.esm|73C720
+RULE -1 255 215 0 | FT=Armor FID=Dawnguard.esm|00575A,LegacyoftheDragonborn.esm|77AE23
+RULE 8 104 86 41 | FT=Armor FID=Skyrim.esm|061CCA
+RULE 71 193 136 77 | FT=Armor FID=Skyrim.esm|061CC1,Skyrim.esm|061CB9,Skyrim.esm|061C8B,Skyrim.esm|061CA5,Skyrim.esm|061CC2,Skyrim.esm|061CC0,Skyrim.esm|061CC9,Skyrim.esm|061CAB,Skyrim.esm|061CD6,Dragonborn.esm|0240FE,Dragonborn.esm|0240FF,Dragonborn.esm|024037,Dragonborn.esm|039D2B,Dragonborn.esm|039D2E,Dragonborn.esm|039D2F,Dragonborn.esm|039FA1,Dragonborn.esm|039FA2,Dragonborn.esm|039FA3,LegacyoftheDragonborn.esm|166B5A,LegacyoftheDragonborn.esm|13D8C3,LegacyoftheDragonborn.esm|13D8C7,LegacyoftheDragonborn.esm|13D8C4,LegacyoftheDragonborn.esm|73C72F,LegacyoftheDragonborn.esm|042965,LegacyoftheDragonborn.esm|042966,LegacyoftheDragonborn.esm|042967,LegacyoftheDragonborn.esm|042968,LegacyoftheDragonborn.esm|04296A,LegacyoftheDragonborn.esm|04296C,LegacyoftheDragonborn.esm|04296D,LegacyoftheDragonborn.esm|05BF68,LegacyoftheDragonborn.esm|05BF69,LegacyoftheDragonborn.esm|05BF6A,LegacyoftheDragonborn.esm|13D8C5,LegacyoftheDragonborn.esm|13D8C6,LegacyoftheDragonborn.esm|13D8C8,LegacyoftheDragonborn.esm|1972C1,LegacyoftheDragonborn.esm|1972C2,LegacyoftheDragonborn.esm|1972C3,LegacyoftheDragonborn.esm|00FC78
+RULE 77 193 136 77 | FT=Armor FID=Skyrim.esm|0E41D8,LegacyoftheDragonborn.esm|77FFC7
+RULE -1 185 1 200 | FT=Weapon FID=AbyssalGreatsword.esp|805,AbyssalGreatsword.esp|801
+RULE -1 193 136 77 | FT=Weapon FID=ccbgssse018-shadowrend.esl|D63,LegacyoftheDragonborn.esm|166831,DBM_CC_ShadowrendHOWPatch.esp|823
+RULE -1 193 136 77 | FT=Weapon FID=ccbgssse018-shadowrend.esl|D62,LegacyoftheDragonborn.esm|46D1B1,DBM_CC_ShadowrendHOWPatch.esp|822
+RULE -1 193 136 77 | FT=Weapon FID=ccbgssse013-dawnfang.esl|D63,ccbgssse013-dawnfang.esl|C92,LegacyoftheDragonborn.esm|1287FC,LegacyoftheDragonborn.esm|128856,LegacyoftheDragonborn.esm|1287FD,LegacyoftheDragonborn.esm|128855,LegacyoftheDragonborn.esm|07EEFC,LegacyoftheDragonborn.esm|73C71B,LegacyoftheDragonborn.esm|07EEF6,LegacyoftheDragonborn.esm|07EEFB,DBM_CC_DuskDawnHOWPatch.esp|817
+RULE -1 193 136 77 | FT=Weapon FID=ccbgssse031-advcyrus.esm|000A4B,WZOblivionArtifacts.esp|07F8B4,WZOblivionArtifacts.esp|08A088,DBM_CC_DeadMansDreadHOWPatch.esp|814
+RULE -1 193 136 77 | FT=Armor FID=LegacyoftheDragonborn.esm|36C961,LegacyoftheDragonborn.esm|36C962,LegacyoftheDragonborn.esm|36C963,LegacyoftheDragonborn.esm|36C964,LegacyoftheDragonborn.esm|36C965 COLORONLY
+RULE 76 193 136 77 | FT=Weapon FID=Skyrim.esm|0956B5,LegacyoftheDragonborn.esm|77AE4B
+RULE -1 193 136 77 | FT=Armor FID=Skyrim.esm|0FC5BF,LegacyoftheDragonborn.esm|6C22AB
+RULE 73 193 136 77 | FT=Weapon FID=Skyrim.esm|0F8313,Skyrim.esm|0F8314,Skyrim.esm|0F8315,Skyrim.esm|0F8316,Skyrim.esm|0F8317,Skyrim.esm|0F8318,LegacyoftheDragonborn.esm|73C72C
+RULE 84 193 136 77 | FT=Weapon FID=Skyrim.esm|0F1AC1,Skyrim.esm|0F71CD,Skyrim.esm|0F71CE,Skyrim.esm|0F71CF,Skyrim.esm|0F71D0,LegacyoftheDragonborn.esm|73C729
+RULE 74 193 136 77 | FT=Weapon FID=Dawnguard.esm|0067CF,LegacyoftheDragonborn.esm|73C72D
+RULE 72 193 136 77 | FT=Weapon FID=Dragonborn.esm|01AEA4,Dragonborn.esm|01AED0,LegacyoftheDragonborn.esm|73C728
+RULE 75 193 136 77 | FT=Weapon FID=ccbgssse069-contest.esl.esm|815,LegacyoftheDragonborn.esm|125E90,icebladeofthemonarch.esp|001887,LegacyoftheDragonborn.esm|73C75F,icebladeofthemonarch.esp|00B00B
+RULE 75 193 136 77 | FT=Weapon FID=icebladeofthemonarch.esp|001886,icebladeofthemonarch.esp|00B00C
+RULE -1 193 136 77 | FT=Weapon FID=Dawnguard.esm|01668C,LegacyoftheDragonborn.esm|77AE4C
+RULE -1 193 136 77 | FT=Weapon FID=Dawnguard.esm|011BAD,LegacyoftheDragonborn.esm|77AE4D
+RULE -1 193 136 77 | FT=Armor FID=Dawnguard.esm|011BAF,LegacyoftheDragonborn.esm|77FFCD
+RULE 67 255 255 255 | FT=MiscItem FID=LegacyoftheDragonborn.esm|139058,LegacyoftheDragonborn.esm|166572 NOCOLOR
+RULE -1 255 255 255 | FT=MiscItem FID=LegacyoftheDragonborn.esm|166572 COLORONLY
+RULE 62 255 255 255 | FT=MiscItem FID=SunHelmSurvival.esp|4DE9AD
+RULE 63 52 155 220 | FT=Potion ST=Drink FID=SunHelmSurvival.esp|4DE9AE
+RULE 64 52 155 220 | FT=Potion ST=Drink FID=SunHelmSurvival.esp|4DE9AF
+RULE 65 52 155 220 | FT=Potion ST=Drink FID=SunHelmSurvival.esp|4DE9B0
+RULE 102 161 64 64 | FT=MiscItem FID=Dragonborn.esm|017749,Dragonborn.esm|0195A9
+RULE 185 255 255 255 | FT=MiscItem FID=LegacyoftheDragonborn.esm|1664A3,LegacyoftheDragonborn.esm|1664A4,LegacyoftheDragonborn.esm|1664A5,LegacyoftheDragonborn.esm|1664A6,LegacyoftheDragonborn.esm|1664A7,LegacyoftheDragonborn.esm|1664A8,LegacyoftheDragonborn.esm|1664A9,LegacyoftheDragonborn.esm|1664AA,LegacyoftheDragonborn.esm|1664AB,LegacyoftheDragonborn.esm|1664AC,LegacyoftheDragonborn.esm|1664AD,LegacyoftheDragonborn.esm|1664AE,LegacyoftheDragonborn.esm|1664B2 NOCOLOR
+RULE 188 255 255 255 | FT=MiscItem FID=Skyrim.esm|319E4 NOCOLOR
+RULE -1 255 255 255 | FT=Armor FID=LegacyoftheDragonborn.esm|001154,LegacyoftheDragonborn.esm|001155,LegacyoftheDragonborn.esm|001156,LegacyoftheDragonborn.esm|001157,LegacyoftheDragonborn.esm|001158,LegacyoftheDragonborn.esm|001159,LegacyoftheDragonborn.esm|00115A,LegacyoftheDragonborn.esm|00115B,LegacyoftheDragonborn.esm|00B812,LegacyoftheDragonborn.esm|00B813,LegacyoftheDragonborn.esm|00B814,LegacyoftheDragonborn.esm|00B815,LegacyoftheDragonborn.esm|00B816,LegacyoftheDragonborn.esm|00B817,LegacyoftheDragonborn.esm|00B818,LegacyoftheDragonborn.esm|00B819,LegacyoftheDragonborn.esm|00B81A,LegacyoftheDragonborn.esm|00B81B,LegacyoftheDragonborn.esm|00B81C,LegacyoftheDragonborn.esm|00B81D,LegacyoftheDragonborn.esm|00B81E,LegacyoftheDragonborn.esm|00B81F,LegacyoftheDragonborn.esm|00B820,LegacyoftheDragonborn.esm|00B821,LegacyoftheDragonborn.esm|00B822,LegacyoftheDragonborn.esm|00B823,LegacyoftheDragonborn.esm|00B824,LegacyoftheDragonborn.esm|00B825,LegacyoftheDragonborn.esm|00B826,LegacyoftheDragonborn.esm|00B827,LegacyoftheDragonborn.esm|00B828,LegacyoftheDragonborn.esm|00B829,LegacyoftheDragonborn.esm|00B82A,LegacyoftheDragonborn.esm|00B82B,LegacyoftheDragonborn.esm|00B82C,LegacyoftheDragonborn.esm|00B82D,LegacyoftheDragonborn.esm|00B82E,LegacyoftheDragonborn.esm|00B82F,LegacyoftheDragonborn.esm|00B830,LegacyoftheDragonborn.esm|00B831,LegacyoftheDragonborn.esm|00B832,LegacyoftheDragonborn.esm|00B833,LegacyoftheDragonborn.esm|00B846,LegacyoftheDragonborn.esm|00B847,LegacyoftheDragonborn.esm|00B848,LegacyoftheDragonborn.esm|00B849,LegacyoftheDragonborn.esm|00B84A,LegacyoftheDragonborn.esm|00B852,LegacyoftheDragonborn.esm|00B853,LegacyoftheDragonborn.esm|00B855,LegacyoftheDragonborn.esm|00B856,LegacyoftheDragonborn.esm|00B857,LegacyoftheDragonborn.esm|00B858,LegacyoftheDragonborn.esm|00B859,LegacyoftheDragonborn.esm|00B85A,LegacyoftheDragonborn.esm|00B85B,LegacyoftheDragonborn.esm|00B85C,LegacyoftheDragonborn.esm|00B85D,LegacyoftheDragonborn.esm|00FC78,LegacyoftheDragonborn.esm|042965,LegacyoftheDragonborn.esm|042966,LegacyoftheDragonborn.esm|042967,LegacyoftheDragonborn.esm|042968,LegacyoftheDragonborn.esm|04296A,LegacyoftheDragonborn.esm|04296C,LegacyoftheDragonborn.esm|04296D,LegacyoftheDragonborn.esm|05BF68,LegacyoftheDragonborn.esm|05BF69,LegacyoftheDragonborn.esm|05BF6A,LegacyoftheDragonborn.esm|06F663,LegacyoftheDragonborn.esm|13D8C5,LegacyoftheDragonborn.esm|13D8C6,LegacyoftheDragonborn.esm|13D8C8,LegacyoftheDragonborn.esm|166296,LegacyoftheDragonborn.esm|166297,LegacyoftheDragonborn.esm|166298,LegacyoftheDragonborn.esm|166299,LegacyoftheDragonborn.esm|16629A,LegacyoftheDragonborn.esm|16629B,LegacyoftheDragonborn.esm|16629C,LegacyoftheDragonborn.esm|16629D,LegacyoftheDragonborn.esm|1662B8,LegacyoftheDragonborn.esm|1972C1,LegacyoftheDragonborn.esm|1972C2,LegacyoftheDragonborn.esm|1972C3,LegacyoftheDragonborn.esm|2A7688,LegacyoftheDragonborn.esm|2A7689,LegacyoftheDragonborn.esm|2A768A,LegacyoftheDragonborn.esm|2A76AB,LegacyoftheDragonborn.esm|30FBF7,LegacyoftheDragonborn.esm|4722F3,LegacyoftheDragonborn.esm|4722F5,LegacyoftheDragonborn.esm|4722F6,LegacyoftheDragonborn.esm|4722F7,LegacyoftheDragonborn.esm|4722F8,LegacyoftheDragonborn.esm|5007BE,LegacyoftheDragonborn.esm|5007BF,LegacyoftheDragonborn.esm|5007C0,LegacyoftheDragonborn.esm|5007C1,LegacyoftheDragonborn.esm|68517C,LegacyoftheDragonborn.esm|6ADCDC,LegacyoftheDragonborn.esm|6ADCDE,LegacyoftheDragonborn.esm|6ADCE0,LegacyoftheDragonborn.esm|6ADCE2,LegacyoftheDragonborn.esm|6ADCE3,LegacyoftheDragonborn.esm|6ADCE4,LegacyoftheDragonborn.esm|6ADCE5,LegacyoftheDragonborn.esm|6ADCE6,LegacyoftheDragonborn.esm|6B7FE6,LegacyoftheDragonborn.esm|6B7FE8,LegacyoftheDragonborn.esm|6B7FEA,LegacyoftheDragonborn.esm|6B7FED,LegacyoftheDragonborn.esm|6B7FEF,LegacyoftheDragonborn.esm|6C22AB,LegacyoftheDragonborn.esm|6C22AD,LegacyoftheDragonborn.esm|6C22AF,LegacyoftheDragonborn.esm|6C22B0,LegacyoftheDragonborn.esm|6C22B1,LegacyoftheDragonborn.esm|6C22B2,LegacyoftheDragonborn.esm|722FF6,LegacyoftheDragonborn.esm|722FFA,LegacyoftheDragonborn.esm|722FFD,LegacyoftheDragonborn.esm|73C70C,LegacyoftheDragonborn.esm|73C72F,LegacyoftheDragonborn.esm|73C73E,LegacyoftheDragonborn.esm|73C73F,LegacyoftheDragonborn.esm|73C740,LegacyoftheDragonborn.esm|73C741,LegacyoftheDragonborn.esm|73C742,LegacyoftheDragonborn.esm|73C743,LegacyoftheDragonborn.esm|73C744,LegacyoftheDragonborn.esm|73C745,LegacyoftheDragonborn.esm|73C752,LegacyoftheDragonborn.esm|73C753,LegacyoftheDragonborn.esm|77AE23,LegacyoftheDragonborn.esm|77AE24,LegacyoftheDragonborn.esm|77AE25,LegacyoftheDragonborn.esm|77AE28,LegacyoftheDragonborn.esm|77AE2B,LegacyoftheDragonborn.esm|77AE30,LegacyoftheDragonborn.esm|77AE3B,LegacyoftheDragonborn.esm|77AE3D,LegacyoftheDragonborn.esm|77AE3F,LegacyoftheDragonborn.esm|77AE41,LegacyoftheDragonborn.esm|77AE45,LegacyoftheDragonborn.esm|77AE46,LegacyoftheDragonborn.esm|77AE47,LegacyoftheDragonborn.esm|77AE48,LegacyoftheDragonborn.esm|77AE49,LegacyoftheDragonborn.esm|77AE57,LegacyoftheDragonborn.esm|77AE58,LegacyoftheDragonborn.esm|77AE59,LegacyoftheDragonborn.esm|77AE5A,LegacyoftheDragonborn.esm|77AE5B,LegacyoftheDragonborn.esm|77AE5C,LegacyoftheDragonborn.esm|77AE5D,LegacyoftheDragonborn.esm|77FFC3,LegacyoftheDragonborn.esm|77FFC4,LegacyoftheDragonborn.esm|77FFC5,LegacyoftheDragonborn.esm|77FFC6,LegacyoftheDragonborn.esm|77FFC7,LegacyoftheDragonborn.esm|77FFC8,LegacyoftheDragonborn.esm|77FFC9,LegacyoftheDragonborn.esm|77FFCA,LegacyoftheDragonborn.esm|77FFCB,LegacyoftheDragonborn.esm|77FFCC,LegacyoftheDragonborn.esm|77FFCD,LegacyoftheDragonborn.esm|77FFCF,LegacyoftheDragonborn.esm|77FFD0,LegacyoftheDragonborn.esm|77FFD1,LegacyoftheDragonborn.esm|77FFD2,LegacyoftheDragonborn.esm|77FFD3,LegacyoftheDragonborn.esm|77FFD4,LegacyoftheDragonborn.esm|77FFD7,LegacyoftheDragonborn.esm|77FFD8,LegacyoftheDragonborn.esm|77FFD9,LegacyoftheDragonborn.esm|77FFDA,LegacyoftheDragonborn.esm|77FFDE,LegacyoftheDragonborn.esm|77FFE8,LegacyoftheDragonborn.esm|780055,LegacyoftheDragonborn.esm|780058,LegacyoftheDragonborn.esm|780059,LegacyoftheDragonborn.esm|89C2D7,LegacyoftheDragonborn.esm|77AE28,LegacyoftheDragonborn.esm|77FFCD,LegacyoftheDragonborn.esm|6ADCE6,LegacyoftheDragonborn.esm|6ADCE5,LegacyoftheDragonborn.esm|6ADCE4,LegacyoftheDragonborn.esm|6ADCE3,LegacyoftheDragonborn.esm|6ADCE2,DBM_CC_DivineCrusaderHOWPatch.esp|800,DBM_CC_DivineCrusaderHOWPatch.esp|801,DBM_CC_DivineCrusaderHOWPatch.esp|802,DBM_CC_DivineCrusaderHOWPatch.esp|803,DBM_CC_DivineCrusaderHOWPatch.esp|804,DBM_CC_DivineCrusaderHOWPatch.esp|80E,DBM_CC_DivineCrusaderHOWPatch.esp|80F,DBM_CC_GrayCowlReturnsPatchV2.esp|813 COLORONLY
+RULE 111 255 255 255 | FT=Book FID=LegacyoftheDragonborn.esm|73C757,LegacyoftheDragonborn.esm|73C758,LegacyoftheDragonborn.esm|73C759,DBM_3DNPC_Patch.esp|A85 NOCOLOR
+RULE 33 255 255 255 | FT=Book FID=LegacyoftheDragonborn.esm|066422,LegacyoftheDragonborn.esm|71D14F,LegacyoftheDragonborn.esm|71D150,LegacyoftheDragonborn.esm|71D151,DBM_RelicNotifications.esp|C9AAC0,DBM_3DNPC_Patch.esp|B5A,DBM_CC_TheCausePatch.esp|877,DBM_CC_TheCausePatch.esp|878,DBM_Undeath_Patch.esp|94F,DBM_CC_SaintsSeducersHOWPatch.esp|B9E,DBM_CC_SaintsSeducersHOWPatch.esp|B9F,DBM_CC_SaintsSeducersHOWPatch.esp|BA0,DBM_CC_SaintsSeducersHOWPatch.esp|BA1,DBM_CC_SaintsSeducersHOWPatch.esp|BA2,DBM_CC_BittercupHOWPatch.esp|80E,DBM_CC_ACArcaneArcherHOWPatch.esp|820,DBM_CC_ACArcaneArcherHOWPatch.esp|82E,DBM_CC_DwMudcrabHOWPatch.esp|91D,DBM_CC_NixHoundHOWPatch.esp|A1F,DBM_CC_ACArcaneAccessoriesHOWPatch.esp|83A,DBM_CC_ACArcaneAccessoriesHOWPatch.esp|83B,DBM_CC_ACArcaneAccessoriesHOWPatch.esp|83C,DBM_CC_ACArcaneAccessoriesHOWPatch.esp|83D,DBM_CC_ACArcaneAccessoriesHOWPatch.esp|83F,DBM_CC_ACBoneWolfHOWPatch.esp|C2F,DBM_Inigo_Patch.esp|869,DBM_Inigo_Patch.esp|86A NOCOLOR
+RULE -1 255 255 255 | FT=Weapon FID=LegacyoftheDragonborn.esm|001164,LegacyoftheDragonborn.esm|001165,LegacyoftheDragonborn.esm|010BA0,LegacyoftheDragonborn.esm|06F679,LegacyoftheDragonborn.esm|07EEEF,LegacyoftheDragonborn.esm|07EEF6,LegacyoftheDragonborn.esm|07EEFB,LegacyoftheDragonborn.esm|07EEFC,LegacyoftheDragonborn.esm|08415F,LegacyoftheDragonborn.esm|0AD48B,LegacyoftheDragonborn.esm|14337E,LegacyoftheDragonborn.esm|166825,LegacyoftheDragonborn.esm|166826,LegacyoftheDragonborn.esm|166827,LegacyoftheDragonborn.esm|166828,LegacyoftheDragonborn.esm|166829,LegacyoftheDragonborn.esm|16682A,LegacyoftheDragonborn.esm|16682B,LegacyoftheDragonborn.esm|16682C,LegacyoftheDragonborn.esm|16682D,LegacyoftheDragonborn.esm|16682E,LegacyoftheDragonborn.esm|166840,LegacyoftheDragonborn.esm|166841,LegacyoftheDragonborn.esm|166842,LegacyoftheDragonborn.esm|166843,LegacyoftheDragonborn.esm|2A766C,LegacyoftheDragonborn.esm|2A768E,LegacyoftheDragonborn.esm|2A7698,LegacyoftheDragonborn.esm|2A769C,LegacyoftheDragonborn.esm|2A769D,LegacyoftheDragonborn.esm|2A769E,LegacyoftheDragonborn.esm|2A76A2,LegacyoftheDragonborn.esm|2A76A3,LegacyoftheDragonborn.esm|2A76A4,LegacyoftheDragonborn.esm|2A76A5,LegacyoftheDragonborn.esm|2A76A6,LegacyoftheDragonborn.esm|2A76A7,LegacyoftheDragonborn.esm|35FF59,LegacyoftheDragonborn.esm|3E4017,LegacyoftheDragonborn.esm|3E4018,LegacyoftheDragonborn.esm|3E4019,LegacyoftheDragonborn.esm|3E401A,LegacyoftheDragonborn.esm|3E401B,LegacyoftheDragonborn.esm|3E401C,LegacyoftheDragonborn.esm|3E401D,LegacyoftheDragonborn.esm|3E401E,LegacyoftheDragonborn.esm|5A94BD,LegacyoftheDragonborn.esm|5C7E69,LegacyoftheDragonborn.esm|5C7E6A,LegacyoftheDragonborn.esm|5C7E6B,LegacyoftheDragonborn.esm|60ADC4,LegacyoftheDragonborn.esm|6ADCEC,LegacyoftheDragonborn.esm|6ADCED,LegacyoftheDragonborn.esm|6B2E46,LegacyoftheDragonborn.esm|73C70E,LegacyoftheDragonborn.esm|73C70F,LegacyoftheDragonborn.esm|73C710,LegacyoftheDragonborn.esm|73C711,LegacyoftheDragonborn.esm|73C712,LegacyoftheDragonborn.esm|73C713,LegacyoftheDragonborn.esm|73C714,LegacyoftheDragonborn.esm|73C715,LegacyoftheDragonborn.esm|73C716,LegacyoftheDragonborn.esm|73C717,LegacyoftheDragonborn.esm|73C718,LegacyoftheDragonborn.esm|73C719,LegacyoftheDragonborn.esm|73C71A,LegacyoftheDragonborn.esm|73C71B,LegacyoftheDragonborn.esm|73C71C,LegacyoftheDragonborn.esm|73C71D,LegacyoftheDragonborn.esm|73C71E,LegacyoftheDragonborn.esm|73C71F,LegacyoftheDragonborn.esm|73C720,LegacyoftheDragonborn.esm|73C721,LegacyoftheDragonborn.esm|73C722,LegacyoftheDragonborn.esm|73C723,LegacyoftheDragonborn.esm|73C724,LegacyoftheDragonborn.esm|73C725,LegacyoftheDragonborn.esm|73C726,LegacyoftheDragonborn.esm|73C727,LegacyoftheDragonborn.esm|73C728,LegacyoftheDragonborn.esm|73C729,LegacyoftheDragonborn.esm|73C72A,LegacyoftheDragonborn.esm|73C72B,LegacyoftheDragonborn.esm|73C72C,LegacyoftheDragonborn.esm|73C72D,LegacyoftheDragonborn.esm|73C72E,LegacyoftheDragonborn.esm|73C730,LegacyoftheDragonborn.esm|73C731,LegacyoftheDragonborn.esm|73C732,LegacyoftheDragonborn.esm|73C733,LegacyoftheDragonborn.esm|73C734,LegacyoftheDragonborn.esm|73C735,LegacyoftheDragonborn.esm|73C736,LegacyoftheDragonborn.esm|73C737,LegacyoftheDragonborn.esm|73C738,LegacyoftheDragonborn.esm|73C739,LegacyoftheDragonborn.esm|73C73A,LegacyoftheDragonborn.esm|73C73B,LegacyoftheDragonborn.esm|73C73C,LegacyoftheDragonborn.esm|73C73D,LegacyoftheDragonborn.esm|73C746,LegacyoftheDragonborn.esm|73C747,LegacyoftheDragonborn.esm|73C748,LegacyoftheDragonborn.esm|73C749,LegacyoftheDragonborn.esm|73C74A,LegacyoftheDragonborn.esm|73C74B,LegacyoftheDragonborn.esm|73C74C,LegacyoftheDragonborn.esm|73C74D,LegacyoftheDragonborn.esm|73C74E,LegacyoftheDragonborn.esm|73C74F,LegacyoftheDragonborn.esm|73C750,LegacyoftheDragonborn.esm|73C751,LegacyoftheDragonborn.esm|73C754,LegacyoftheDragonborn.esm|73C755,LegacyoftheDragonborn.esm|73C756,LegacyoftheDragonborn.esm|73C75A,LegacyoftheDragonborn.esm|73C75B,LegacyoftheDragonborn.esm|73C75C,LegacyoftheDragonborn.esm|73C75D,LegacyoftheDragonborn.esm|73C75E,LegacyoftheDragonborn.esm|73C75F,LegacyoftheDragonborn.esm|77AE22,LegacyoftheDragonborn.esm|77AE26,LegacyoftheDragonborn.esm|77AE27,LegacyoftheDragonborn.esm|77AE29,LegacyoftheDragonborn.esm|77AE2A,LegacyoftheDragonborn.esm|77AE2C,LegacyoftheDragonborn.esm|77AE2D,LegacyoftheDragonborn.esm|77AE2E,LegacyoftheDragonborn.esm|77AE2F,LegacyoftheDragonborn.esm|77AE31,LegacyoftheDragonborn.esm|77AE33,LegacyoftheDragonborn.esm|77AE34,LegacyoftheDragonborn.esm|77AE35,LegacyoftheDragonborn.esm|77AE36,LegacyoftheDragonborn.esm|77AE37,LegacyoftheDragonborn.esm|77AE38,LegacyoftheDragonborn.esm|77AE39,LegacyoftheDragonborn.esm|77AE3A,LegacyoftheDragonborn.esm|77AE3E,LegacyoftheDragonborn.esm|77AE42,LegacyoftheDragonborn.esm|77AE43,LegacyoftheDragonborn.esm|77AE44,LegacyoftheDragonborn.esm|77AE4B,LegacyoftheDragonborn.esm|77AE4C,LegacyoftheDragonborn.esm|77AE4D,LegacyoftheDragonborn.esm|77FFCE,LegacyoftheDragonborn.esm|77FFD5,LegacyoftheDragonborn.esm|77FFD6,LegacyoftheDragonborn.esm|77FFDB,LegacyoftheDragonborn.esm|77FFDC,LegacyoftheDragonborn.esm|77FFDD,LegacyoftheDragonborn.esm|77FFDF,LegacyoftheDragonborn.esm|77FFE0,LegacyoftheDragonborn.esm|77FFE1,LegacyoftheDragonborn.esm|77FFE2,LegacyoftheDragonborn.esm|77FFE3,LegacyoftheDragonborn.esm|77FFE4,LegacyoftheDragonborn.esm|77FFE5,LegacyoftheDragonborn.esm|77FFE6,LegacyoftheDragonborn.esm|77FFE7,DBM_SUT_Patch.esp|CF2,LegacyoftheDragonborn.esm|77AE4C,LegacyoftheDragonborn.esm|77AE4D,LegacyoftheDragonborn.esm|6ADCEC,LegacyoftheDragonborn.esm|6ADCED,DBM_CC_ShadowrendHOWPatch.esp|822,DBM_CC_ShadowrendHOWPatch.esp|823,LegacyoftheDragonborn.esm|73C71A,LegacyoftheDragonborn.esm|77AE36,DBM_CC_SaintsSeducersHOWPatch.esp|938,DBM_CC_RuinsEdgePatchV2.esp|804,DBM_CC_StaffofSheogorathPatchV2.esp|803,DBM_CC_TheCausePatch.esp|85D,DBM_CC_UmbraPatchV2.esp|810,DBM_CC_DeadMansDreadHOWPatch.esp|814,LegacyoftheDragonborn.esm|07EEFC,LegacyoftheDragonborn.esm|73C71B,LegacyoftheDragonborn.esm|07EEF6,LegacyoftheDragonborn.esm|07EEFB,LegacyoftheDragonborn.esm|77AE3C,DBM_CC_DuskDawnHOWPatch.esp|817,DBM_SUT_Patch.esp|CEB,DBM_CC_GoblinsHOWPatch.esp|80C,DBM_CC_HallOfWonders.esp|0D21CD,icebladeofthemonarch.esp|00B00C,icebladeofthemonarch.esp|00B00B COLORONLY
+RULE -1 219 46 115 | FT=Potion ST=Potion ARCH=28,3,27,29 COLORONLY
+RULE -1 81 219 46 | FT=Potion ST=Potion ARCH=34 AV=32 COLORONLY
+RULE -1 0 84 147 | FT=Potion ST=Potion AV=73,75 COLORONLY
+RULE 158 255 255 255 | FT=Potion KWALL=OCF_AlchPotion_Misc
+RULE -1 46 159 219 | FT=Potion ST=Potion AV=39 COLORONLY
+RULE -1 255 255 255 | FT=Potion KWALL=VendorItemPoison ASSUBTYPE=Poison
+RULE 154 255 255 255 | FT=Potion KWALL=OCF_AlchPoison_Food NOCOLOR
+RULE -1 255 255 255 | FT=Potion KWANY=OCF_AlchFood,OCF_AlchSpoiled,OCF_AlchBait ASSUBTYPE=Food
+RULE -1 255 255 255 | FT=Potion KWANY=OCF_AlchDrink,OCF_AlchDrug,OCF_AlchSnow ASSUBTYPE=Drink
+RULE 245 99 69 56 | FT=Potion ST=Food KWANY=OCF_AlchFood_Baked,VendorItemFoodPastry,VendorItemFoodPastrySmall,VendorItemFoodPastryLarge
+RULE 239 142 116 91 | FT=Potion ST=Food KWANY=OCF_AlchFood_Bread,VendorItemFoodBread
+RULE 240 255 216 103 | FT=Potion ST=Food KWANY=OCF_AlchFood_Cheese,OCF_AlchFood_CheeseBowl,VendorItemFoodCheese,VendorItemFoodCheeseBowl
+RULE 154 122 5 5 | FT=Potion ST=Food KWANY=OCF_AlchFood_Fruit,VendorItemFoodFruit
+RULE 243 127 95 35 | FT=Potion ST=Food KWANY=OCF_AlchFood_Meal,VendorItemFoodMeal
+RULE 253 142 116 91 | FT=Potion ST=Food KWANY=OCF_AlchFood_Sandwich,FoodTypeSandwich
+RULE 246 201 184 137 | FT=Potion ST=Food KWANY=OCF_AlchFood_Stew,VendorItemFoodStew,VendorItemFoodStewSimple,VendorItemFoodStewComplex
+RULE 242 235 175 76 | FT=Potion ST=Food KWANY=OCF_AlchFood_Treat,VendorItemFoodTreat
+RULE 247 33 110 35 | FT=Potion ST=Food KWANY=OCF_AlchFood_Vegetable,VendorItemFoodVegetable
+RULE 232 33 110 35 | FT=Potion ST=Food KWANY=OCF_IngrPlant,OCF_IngrPlant_Flower
+RULE 218 99 69 56 | FT=Potion ST=Food KWALL=OCF_IngrPlant_Mushroom
+RULE 232 99 69 56 | FT=Potion ST=Food KWALL=OCF_IngrPlant_Root
+RULE 232 143 160 165 | FT=Potion ST=Food KWALL=OCF_IngrPlant_SoulHusk
+RULE 244 111 55 41 | FT=Potion ST=Food KWANY=OCF_AlchFood_Meat,VendorItemFoodMeat
+RULE 244 249 144 111 | FT=Potion ST=Food KWALL=OCF_AlchFood_MeatRaw
+RULE 227 255 255 255 | FT=Potion ST=Food KWANY=OCF_IngrRemains_Bug,OCF_IngrRemains_BugDragonfly NOCOLOR
+RULE 221 255 255 255 | FT=Potion ST=Food KWALL=OCF_IngrRemains_BugBee NOCOLOR
+RULE 231 255 255 255 | FT=Potion ST=Food KWANY=OCF_IngrRemains_Organ,OCF_IngrRemains_OrganHeart NOCOLOR
+RULE 228 255 255 255 | FT=Potion ST=Food KWALL=OCF_IngrRemains_OrganEye NOCOLOR
+RULE 61 224 100 47 | FT=Potion ST=Food KWANY=OCF_AlchFood_Seafood,VendorItemFoodSeafood
+RULE -1 216 202 158 | FT=Potion ST=Food KWALL=OCF_AlchFood_SeafoodRaw COLORONLY
+RULE 241 249 166 2 | FT=Potion ST=Food KWANY=OCF_AlchFood_Fish,VendorItemFoodFish
+RULE -1 143 160 165 | FT=Potion ST=Food KWALL=OCF_AlchFood_FishRaw COLORONLY
+RULE 216 249 166 2 | FT=Potion ST=Food KWANY=OCF_AlchFood_Egg,VendorItemFoodEgg
+RULE 216 221 221 221 | FT=Potion ST=Food KWALL=OCF_AlchFood_EggRaw
+RULE -1 255 200 120 | FT=Potion ST=Drink KWANY=OCF_AlchDrinkAlcohol,VendorItemDrinkAlcohol,VendorItemDrinkAlcoholWeak,VendorItemDrinkAlcoholModerate,VendorItemDrinkAlcoholStrong COLORONLY
+RULE -1 99 69 56 | FT=Potion ST=Drink KWALL=OCF_AlchDrink_Coffee COLORONLY
+RULE -1 122 5 5 | FT=Potion ST=Drink KWALL=OCF_AlchDrink_Juice COLORONLY
+RULE -1 221 221 221 | FT=Potion ST=Drink KWANY=OCF_AlchDrink_Milk,VendorItemDrinkMilk COLORONLY
+RULE -1 33 110 35 | FT=Potion ST=Drink KWALL=OCF_AlchDrink_Tea COLORONLY
+RULE -1 0 84 147 | FT=Potion ST=Drink KWANY=OCF_AlchDrink_Water,VendorItemDrinkWater COLORONLY
+RULE -1 77 57 17 | FT=Potion ST=Drink KWALL=OCF_AlchDrink_WaterRaw COLORONLY
+RULE -1 0 84 147 | FT=Potion ST=Drink KWANY=OCF_AlchDrink_WaterSalt,_SHSaltWaterKeyword COLORONLY
+RULE -1 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselWaterskin_000 COLORONLY
+RULE 172 255 255 255 | FT=Potion ST=Drink KWALL=OCF_AlchSnow
+RULE 214 113 39 84 | FT=Potion ST=Drink KWALL=OCF_AlchDrug
+RULE -1 201 184 137 | FT=Potion ST=Food,Drink KWANY=OCF_AlchFood_Ingredient,VendorItemFoodDryGoods,VendorItemFoodFat COLORONLY
+RULE -1 77 57 17 | FT=Potion ST=Food,Drink KWALL=OCF_AlchSpoiled COLORONLY
+RULE 158 142 33 41 | FT=Potion KWANY=OCF_AlchBlood,OCF_AlchBlood_Creature,OCF_AlchBlood_Humanoid,OCF_AlchBlood_Werebeast,VendorItemDrinkBloodPotion,_SHBloodDrink
+RULE -1 173 0 179 | FT=Potion KWALL=OCF_AlchPoison_Food COLORONLY
+RULE 179 255 255 255 | FT=Potion KWALL=OCF_VesselBag NOCOLOR
+RULE 162 255 255 255 | FT=Potion KWANY=OCF_VesselBottleDunmer,_SH_SujammaBottleKeyword NOCOLOR
+RULE 161 255 255 255 | FT=Potion KWANY=OCF_VesselBottleMead,_SH_MeadBottleKeyword NOCOLOR
+RULE 214 255 255 255 | FT=Potion KWALL=OCF_VesselBottleSkooma NOCOLOR
+RULE 194 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselBottlePoison NOCOLOR
+RULE 158 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselBottlePotion NOCOLOR
+RULE 162 255 255 255 | FT=Potion KWANY=OCF_VesselBottleWine,_SH_WineBottleKeyword NOCOLOR
+RULE 246 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselBowl NOCOLOR
+RULE 162 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselCup NOCOLOR
+RULE 162 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselDrinkingHorn NOCOLOR
+RULE 162 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselFlagon NOCOLOR
+RULE 162 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselFlask NOCOLOR
+RULE 246 255 255 255 | FT=Potion KWALL=OCF_VesselHoneyPot NOCOLOR
+RULE 115 255 255 255 | FT=Potion KWALL=OCF_VesselJar NOCOLOR
+RULE 162 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselJug NOCOLOR
+RULE 236 255 255 255 | FT=Potion KWALL=OCF_VesselKettle NOCOLOR
+RULE 179 255 255 255 | FT=Potion KWALL=OCF_VesselSack NOCOLOR
+RULE 248 255 255 255 | FT=Potion KWALL=OCF_VesselSmokingPipe NOCOLOR
+RULE 162 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselTankard NOCOLOR
+RULE 215 255 255 255 | FT=Potion ST=Food,Drink KWALL=OCF_VesselVial NOCOLOR
+RULE 65 255 255 255 | FT=Potion ST=Food,Drink KWANY=OCF_VesselWaterskin,OCF_VesselWaterskin_100 NOCOLOR
+RULE 64 255 255 255 | FT=Potion ST=Food,Drink KWANY=OCF_VesselWaterskin_075,OCF_VesselWaterskin_066 NOCOLOR
+RULE 63 255 255 255 | FT=Potion ST=Food,Drink KWANY=OCF_VesselWaterskin_050,OCF_VesselWaterskin_033 NOCOLOR
+RULE 62 255 255 255 | FT=Potion ST=Food,Drink KWANY=OCF_VesselWaterskin_025,OCF_VesselWaterskin_000 NOCOLOR
+RULE 219 161 64 64 | FT=Potion KWALL=OCF_ArtifactDaedric_Bittercup
+RULE 120 91 196 201 | FT=Potion KWANY=OCF_RelicAyleid_Crystal,IconAyleidCrystal
+RULE 110 112 95 50 | FT=Potion KWALL=OCF_RelicDwarven_Fairy
+RULE 217 204 204 51 | FT=Potion KWALL=OCF_AlchFood_EggMagic
+RULE 249 164 165 191 | FT=Potion KWANY=WAF_WeapTypeGrenade,BOS_SmokeBombKeyword
+RULE 237 191 142 96 | FT=Potion KWANY=OCF_MiscCampingGear,IconCampsite
+RULE -1 161 64 64 | FT=Potion KWALL=OCF_InvColorDaedric COLORONLY
+RULE -1 193 136 77 | FT=Potion KWALL=OCF_InvColorLegendary COLORONLY
+RULE 62 255 255 255 | FT=MiscItem KWALL=OCF_VesselWaterskin NOCOLOR
+RULE 232 255 255 255 | FT=Ingredient KWALL=OCF_IngrMisc_Beehive NOCOLOR
+RULE 242 235 175 76 | FT=Ingredient KWALL=OCF_IngrMisc_Honeycomb
+RULE 172 255 255 255 | FT=Ingredient KWALL=OCF_AlchSnow
+RULE 232 33 110 35 | FT=Ingredient KWALL=OCF_IngrPlant
+RULE 218 99 69 56 | FT=Ingredient KWALL=OCF_IngrPlant_Mushroom
+RULE -1 99 69 56 | FT=Ingredient KWALL=OCF_IngrPlant_Root COLORONLY
+RULE 232 143 160 165 | FT=Ingredient KWALL=OCF_IngrPlant_SoulHusk
+RULE 185 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains NOCOLOR
+RULE 223 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_Bone NOCOLOR
+RULE 185 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_BoneSkull NOCOLOR
+RULE 158 142 33 41 | FT=Ingredient KWALL=OCF_AlchBlood
+RULE 227 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_Bug NOCOLOR
+RULE 221 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_BugBee NOCOLOR
+RULE 224 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_BugButterfly NOCOLOR
+RULE 61 143 160 165 | FT=Ingredient KWALL=OCF_IngrRemains_Crustacean
+RULE 216 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_Egg NOCOLOR
+RULE 235 255 255 255 | FT=Ingredient KWALL=OCF_MiscSoap NOCOLOR
+RULE 226 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_Fiber NOCOLOR
+RULE 69 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_FiberHair NOCOLOR
+RULE 241 143 160 165 | FT=Ingredient KWALL=OCF_IngrRemains_Fish
+RULE 244 249 144 111 | FT=Ingredient KWALL=OCF_IngrRemains_Flesh
+RULE -1 111 55 41 | FT=Ingredient KWALL=OCF_IngrRemains_FleshCooked COLORONLY
+RULE 230 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_Feather NOCOLOR
+RULE 70 99 69 56 | FT=Ingredient KWALL=OCF_IngrRemains_Organ
+RULE 228 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_OrganEye
+RULE 231 123 36 36 | FT=Ingredient KWALL=OCF_IngrRemains_OrganHeart
+RULE 109 143 160 165 | FT=Ingredient KWALL=OCF_IngrRemains_Plate
+RULE 180 219 179 110 | FT=Ingredient KWALL=OCF_IngrRemains_PlateHide
+RULE 194 173 0 179 | FT=Ingredient KWALL=OCF_AlchPoison
+RULE 233 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_Sharp NOCOLOR
+RULE 220 99 69 56 | FT=Ingredient KWALL=OCF_IngrRemains_SharpAntler
+RULE 222 99 69 56 | FT=Ingredient KWALL=OCF_IngrRemains_SharpBeak
+RULE 225 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_SharpClaw NOCOLOR
+RULE 233 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_SharpHorn NOCOLOR
+RULE 222 99 69 56 | FT=Ingredient KWALL=OCF_IngrRemains_SharpTalon
+RULE 229 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_SharpTeeth NOCOLOR
+RULE 238 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_SharpTusk NOCOLOR
+RULE 177 255 176 209 | FT=Ingredient KWALL=VendorItemGem
+RULE 234 255 255 255 | FT=Ingredient KWALL=OCF_IngrRemains_Pearl
+RULE -1 77 57 17 | FT=Ingredient KWALL=OCF_AlchSpoiled COLORONLY
+RULE -1 0 153 204 | FT=Ingredient KWALL=OCF_InvColorAedric COLORONLY
+RULE -1 51 51 51 | FT=Ingredient KWALL=OCF_InvColorBlack COLORONLY
+RULE -1 0 84 147 | FT=Ingredient KWALL=OCF_InvColorBlue COLORONLY
+RULE -1 161 64 64 | FT=Ingredient KWALL=OCF_InvColorDaedric COLORONLY
+RULE -1 112 95 50 | FT=Ingredient KWALL=OCF_InvColorDwarven COLORONLY
+RULE -1 199 54 54 | FT=Ingredient KWALL=OCF_InvColorFire COLORONLY
+RULE -1 31 251 255 | FT=Ingredient KWALL=OCF_InvColorFrost COLORONLY
+RULE -1 17 17 17 | FT=Ingredient KWALL=OCF_InvColorGray COLORONLY
+RULE -1 33 110 35 | FT=Ingredient KWALL=OCF_InvColorGreen COLORONLY
+RULE -1 193 136 77 | FT=Ingredient KWALL=OCF_InvColorLegendary COLORONLY
+RULE -1 192 55 151 | FT=Ingredient KWALL=OCF_InvColorMagenta COLORONLY
+RULE -1 192 122 0 | FT=Ingredient KWALL=OCF_InvColorOrange COLORONLY
+RULE -1 255 122 172 | FT=Ingredient KWALL=OCF_InvColorPink COLORONLY
+RULE -1 120 47 173 | FT=Ingredient KWALL=OCF_InvColorPurple COLORONLY
+RULE -1 123 36 36 | FT=Ingredient KWALL=OCF_InvColorRed COLORONLY
+RULE -1 234 171 0 | FT=Ingredient KWALL=OCF_InvColorShock COLORONLY
+RULE -1 255 255 255 | FT=Ingredient KWALL=OCF_InvColorWhite COLORONLY
+RULE -1 224 224 33 | FT=Ingredient KWALL=OCF_InvColorYellow COLORONLY
+RULE 179 255 255 255 | FT=Ingredient KWALL=OCF_VesselBag NOCOLOR
+RULE 158 255 255 255 | FT=Ingredient KWALL=OCF_VesselBottlePotion NOCOLOR
+RULE 162 255 255 255 | FT=Ingredient KWANY=OCF_VesselBottleWine,_SH_WineBottleKeyword NOCOLOR
+RULE 246 255 255 255 | FT=Ingredient KWALL=OCF_VesselBowl NOCOLOR
+RULE 115 255 255 255 | FT=Ingredient KWALL=OCF_VesselJar NOCOLOR
+RULE 215 255 255 255 | FT=Ingredient KWALL=OCF_VesselVial NOCOLOR
+RULE 179 112 81 52 | FID=TheGiftOfSaturalia.esp|0A79,TheGiftOfSaturalia.esp|0A78
+RULE 117 255 255 255 | FID=TheGiftOfSaturalia.esp|0852,TheGiftOfSaturalia.esp|0853,TheGiftOfSaturalia.esp|0854,TheGiftOfSaturalia.esp|0855,TheGiftOfSaturalia.esp|0856,TheGiftOfSaturalia.esp|0857,TheGiftOfSaturalia.esp|0858,TheGiftOfSaturalia.esp|0859,TheGiftOfSaturalia.esp|085A,TheGiftOfSaturalia.esp|085B,TheGiftOfSaturalia.esp|085C NOCOLOR
+RULE -1 147 40 255 | FT=Spell EFFKWALL=AbyssConjuration COLORONLY
+RULE -1 147 40 255 | FT=Spell EFFKWALL=AbyssDestruction COLORONLY
+RULE -1 147 40 255 | FT=Spell EFFKWALL=AbyssIllusion COLORONLY
+RULE 185 147 40 255 | FT=Spell EFFKWALL=AbyssPower
+RULE -1 0 188 255 | FT=Spell EFFKWALL=ArcaneAlteration COLORONLY
+RULE -1 0 188 255 | FT=Spell EFFKWALL=ArcaneDestruction COLORONLY
+RULE -1 0 188 255 | FT=Spell EFFKWALL=ArcaneConjuration COLORONLY
+RULE 185 0 188 255 | FT=Spell EFFKWALL=ArcanePower
+RULE 104 142 33 41 | FT=Spell EFFKWALL=BloodmoonDestruction
+RULE -1 142 33 41 | FT=Spell EFFKWALL=BloodmoonConjuration COLORONLY
+RULE 185 142 33 41 | FT=Spell EFFKWALL=BloodmoonPower
+RULE -1 255 128 0 | FT=Spell EFFKWALL=ArclightConjuration COLORONLY
+RULE -1 255 128 0 | FT=Spell EFFKWALL=ArclightDestruction COLORONLY
+RULE 185 255 128 0 | FT=Spell EFFKWALL=ArclightPower
+RULE -1 32 196 125 | FT=Spell EFFKWALL=DesecrationConjuration COLORONLY
+RULE 171 32 196 125 | FT=Spell EFFKWALL=DesecrationDestruction
+RULE 185 32 196 125 | FT=Spell EFFKWALL=DesecrationPower
+RULE -1 31 251 255 | FT=Spell EFFKWALL=FlamesOfColdHarbourConjuration COLORONLY
+RULE 171 31 251 255 | FT=Spell EFFKWALL=FlamesOfColdHarbourDestruction
+RULE 185 31 251 255 | FT=Spell EFFKWALL=FlamesOfColdHarbourPower
+RULE -1 242 222 43 | FT=Spell EFFKWALL=InquisitionRestoration COLORONLY
+RULE -1 242 222 43 | FT=Spell EFFKWALL=InquisitionPower COLORONLY
+RULE 126 31 251 255 | FT=Spell EFFKWALL=LunarisRestorationDamage
+RULE 126 31 251 255 | FT=Spell EFFKWALL=LunarisPower
+RULE -1 110 209 23 | FT=Spell EFFKWALL=NaturaAlteration COLORONLY
+RULE -1 110 209 23 | FT=Spell EFFKWALL=NaturaConjuration COLORONLY
+RULE 102 162 162 162 | FT=Spell EFFKWALL=NaturaDestructionStone
+RULE 105 56 97 197 | FT=Spell EFFKWALL=NaturaDestructionWater
+RULE 106 205 203 196 | FT=Spell EFFKWALL=NaturaDestructionWind
+RULE -1 255 183 197 | FT=Spell EFFKWALL=NaturaIllusion COLORONLY
+RULE -1 110 209 23 | FT=Spell EFFKWALL=NaturaRestoration COLORONLY
+RULE 185 110 209 23 | FT=Spell EFFKWALL=NaturaRestorationPoison
+RULE 185 110 209 23 | FT=Spell EFFKWALL=NaturaPower
+RULE -1 32 196 125 | FT=Spell EFFKWALL=NecroticConjurationSummon COLORONLY
+RULE 160 32 196 125 | FT=Spell EFFKWALL=NecroticConjurationBoundWeapon
+RULE 185 32 196 125 | FT=Spell EFFKWALL=NecroticConjurationOther
+RULE 185 32 196 125 | FT=Spell EFFKWALL=NecroticPower
+RULE -1 88 63 255 | FT=Spell EFFKWALL=StellarisRestoration COLORONLY
+RULE 103 233 86 0 | FT=Spell EFFKWALL=StellarisRestorationDamage
+RULE -1 147 40 255 | FT=Spell EFFKWALL=StellarisConjuration COLORONLY
+RULE 185 53 14 210 | FT=Spell EFFKWALL=StellarisPower
+RULE -1 255 60 0 | FT=Spell FID=Vulcano.esp|825,Vulcano.esp|826,Vulcano.esp|827,Vulcano.esp|828,Vulcano.esp|829,Vulcano.esp|82A,Vulcano.esp|82B,Vulcano.esp|82C,Vulcano.esp|82D,Vulcano.esp|82E,Vulcano.esp|82F,Vulcano.esp|831,Vulcano.esp|832,Vulcano.esp|833,Vulcano.esp|834,Vulcano.esp|835,Vulcano.esp|836,Vulcano.esp|837,Vulcano.esp|838,Vulcano.esp|83B,Vulcano.esp|83C,Vulcano.esp|8F2,Vulcano.esp|94C,Vulcano.esp|951,Vulcano.esp|952,Vulcano.esp|969,Vulcano.esp|97F,Vulcano.esp|980,Vulcano.esp|981,Vulcano.esp|995,Vulcano.esp|99E,Vulcano.esp|99F,Vulcano.esp|9AA,Vulcano.esp|9AB,Vulcano.esp|9AD,Vulcano.esp|9BD,Vulcano.esp|9C5 COLORONLY
+RULE 252 214 202 159 | FT=MiscItem KWALL=MAG_MaterialTypePaper
+RULE 251 127 154 212 | FT=MiscItem KWALL=MAG_MaterialTypeInk
+RULE 250 117 105 255 | FT=MiscItem KWALL=MAG_MaterialTypeGem
+RULE 206 164 165 191 | FT=Weapon KWANY=WeapTypeWarhammer
+RULE 100 255 255 255 | FT=Armor KWANY=_WetBackpackLarge,_WetBackpackMed,_WetBackpackSmall,_WetBackpackHeavy NOCOLOR
+RULE 177 255 255 255 | FT=MiscItem ST=Gem NOCOLOR
+RULE 181 255 255 255 | FT=MiscItem ST=Ingot NOCOLOR
+RULE 184 255 255 255 | FT=MiscItem ST=Ore NOCOLOR
+RULE 180 255 255 255 | FT=MiscItem ST=Hide NOCOLOR
+RULE 182 255 255 255 | FT=MiscItem ST=Leather NOCOLOR
+RULE 186 255 255 255 | FT=MiscItem ST=LeatherStrips NOCOLOR
+RULE 189 255 255 255 | FT=MiscItem ST=Firewood NOCOLOR
+RULE 175 255 255 255 | FT=MiscItem ST=Clutter NOCOLOR
+RULE 178 255 255 255 | FT=MiscItem ST=Gold NOCOLOR
+RULE 185 255 255 255 | FT=MiscItem ST=Remains NOCOLOR
+RULE 141 255 255 255 | FT=Book ST=Note NOCOLOR
+RULE 142 255 255 255 | FT=Book ST=SpellTome NOCOLOR
+RULE 183 255 255 255 | FT=MiscItem FID=Skyrim.esm|A NOCOLOR

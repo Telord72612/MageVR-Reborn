@@ -1,0 +1,48 @@
+# ======= EDIT ONLY THE LINES BELOW (no # in front, no spaces around =) =======
+composite=1
+slots=9
+tabs=1
+info=1
+util=1
+bar=1
+bag=1
+uiscale=1.0
+cutout=0
+overlay=0
+shellflat=0
+ppmode=2
+lootmode=2
+btnselect=0
+btngrab=1
+# ======= DOCUMENTATION (lines starting with # are ignored) ===================
+# Re-read live ~1/second. After ANY change: HOLSTER the pack, then DRAW it again.
+#
+# composite  1=composited text (default). 0=old per-letter text (fallback).
+# slots      how many item slots render, 0..9. Fewer slots = fewer draw calls.
+# tabs       0 hides the tab strip.
+# info       0 hides the info panel + 3D preview.
+# util       0 hides the utility buttons.
+# bar        0 hides the bottom bar (weight/gold/page + arrows).
+# bag        0 hides the bag-of-hoarding element.
+# uiscale    0.2..1.0 shrinks the whole UI. Same draw calls, ~scale^2 fewer pixels.
+# cutout     1 = soft alpha quads become hard-edged cutouts (edges pixelate = it works).
+# overlay    0 = hides the faint OpenVR calibration overlay while the pack is drawn.
+# shellflat  leather-shell banding test: 1 = flat NORMAL map (if the parallel lines
+#            vanish, the missing-tangent lighting bug is confirmed). 2 = also flat
+#            gray DIFFUSE (the full "no texture" render). 0 = normal look.
+#
+# The log stamps every second with PERF-TEST[...] + visibleGeoms while any knob
+# is non-default - that is the proof trail. Warning: hidden buttons are still
+# CLICKABLE (culling hides pixels, not raycasts) - don't pull the trigger mid-test.
+
+
+# ---- Fallbacks for the MageVR Reborn MCM (Data\MCM\Settings\MageVR Reborn.ini overrides these) ----
+# ppmode / lootmode   0 = disabled (vanilla menu)
+#                     1 = only while the backpack is DRAWN
+#                     2 = always on
+#   BOTH default to 2 (always on) for consistency -- the loot/pickpocket panels float on the
+#   container/NPC and never needed a bag in hand. Set 1 to gate a panel on the drawn backpack.
+# btnselect / btngrab  0 = Trigger  1 = Grip  2 = A/X  3 = B/Y  4 = Joystick click
+#   select = confirm what you point at.  grab = pull out / rearrange / deposit.
+#   They must DIFFER; if equal, grab reverts to its default and a warning is logged.
+#   These remap OUR polls only -- HIGGS keeps its own bindings.

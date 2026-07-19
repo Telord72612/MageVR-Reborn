@@ -1,0 +1,89 @@
+# VR Backpack -- looting panel placement (live-tuned).
+# Re-read every time you OPEN a container (with the backpack out). Tuning loop:
+#   edit a value here -> look at a container -> activate it -> the panel re-places.
+# Units: world units, except *deg (degrees).
+#
+# pull   = how far to pull the panel OFF the container, TOWARD you (horizontal). Bigger = closer to you.
+pull=30
+# rise   = how high above the container centre the panel floats (raise/lower to sit on the opening).
+rise=40
+# scale  = panel size. Baked panel ~20u wide at scale 1.
+scale=0.6
+# ---- orientation (fix "upside down" / "sideways"): the base already turns to face you; these are
+#      constant corrections applied in the panel's own frame. Try 90 / 180 / -90 to flip an axis. ----
+# ★★ NOTE (2026-07-08): yaw is now 0 and MUST STAY 0. yaw=180 used to "fix" the mirrored text, but it did so
+#   by turning the panel's FRONT (+Y) away from you, at the container. You then saw the BACK faces: every
+#   raised element was raised backwards (icon behind its ring, text behind its banner) and the 3D-preview
+#   anchor (+8 on Y = "in front") ended up BEHIND the panel on the container's side. The text only read
+#   because a two-sided quad's back face mirrors it a second time, cancelling the first mirror.
+#   The mesh is now AUTHORED mirrored in X (build_loot.py MIRROR_X) for a +Y viewer, so with yaw=0 the front
+#   faces you, the layering is right, the preview floats in front, and the text still reads left-to-right.
+#   Setting yaw=180 again will mirror the whole panel and shove the 3D preview behind it.
+# pitchdeg = tip forward/back
+pitchdeg=0
+# rolldeg  = spin about the FACING axis (flips both X and Z = upside-down + mirrored; usually leave 0)
+rolldeg=0
+# yawdeg   = spin in place about the UP axis. KEEP 0 (see the note above).
+yawdeg=0
+# ---- vertical face-tracking: tilt the panel to look at the player's HEAD (not just horizontal). ----
+# facehead = 0 -> panel stays vertical (old behaviour). 1 -> panel tips to look straight at your face
+#            (container below you -> panel looks UP at you; eye-level -> straight). 0.5 = half tilt.
+facehead=1.0
+# ---- 3D item-preview (the little model on the left square) orientation, in the PANEL's frame. ----
+# The preview anchor rides the yaw-180 + tilted panel, so it needs its OWN pitch (the backpack's preview
+# uses 90/45 in a different frame). Tuning loop: edit -> re-activate the container -> re-select an item.
+# gndpitch = stand the item up. DERIVED, not guessed: at pitch=90 the item's TOP pointed at the container
+#            (= panel -Y). Since Rx(p)*(0,0,1) = (0,-sin p, cos p), that proves the GND mesh's top is its own
+#            local +Z -- so pitch=0 already stands it upright along the panel's +Z. The backpack's 90 belongs
+#            to the BACKPACK's frame; it tipped the item onto its side here. Dial live if it needs a nudge.
+gndpitch=0
+# gndyaw   = lateral spin so you see it at a 3/4 angle
+gndyaw=45
+# ---- session / interaction ranges (world units). Like everything here: LIVE ON RE-OPEN, not per-tick
+#      (a per-frame config read jitters the frametime). Edit -> re-activate the container.
+# closedist   = WALK-AWAY auto-close. Player<->container distance past which the loot session ends and the
+#               panel vanishes. ~70u per metre, so 400 ~= 5.7 m. (The fully-looted auto-close is separate.)
+closedist=133
+# depositzone = DEPOSIT radius around the PANEL centre. Let go of a HIGGS-held item with your HAND inside
+#               this sphere and it goes INTO the container. 0 = AUTO (use the panel's own world-bound
+#               radius). Raise it if depositing feels finicky; lower it if items store by accident.
+depositzone=0
+
+# ================= PICKPOCKET PANEL (step-0 spike: FOLLOW only) =================
+# Activating a LIVE npc opens ContainerMenu in kPickpocket mode, which the same sink catches. The panel
+# floats on the NPC and is RE-PLACED EVERY TICK (a container never moves; a person walks and turns).
+# This build proves the follow ONLY: empty rings, no icons, no grab. The NPC's pockets cannot be touched.
+# Like everything here: LIVE ON RE-OPEN. Edit -> walk away (or holster) -> re-activate the NPC.
+#
+# pppull   = horizontal offset from the NPC, toward you.
+pppull=35
+# pprise   = height above the NPC's FEET. ~90 puts it near chest/head. (Measured from the actor's origin,
+#            never its worldBound centre -- that bobs with the walk cycle.)
+pprise=90
+# ppanchor = which node the panel hangs off. 0 = the actor's 3D root (does not animate).
+#            1 = the "NPC Spine2 [Spn2]" bone (rides the torso, inherits its bob between ticks).
+#            Both re-place every tick, so this only changes what happens on a frame the tick misses.
+ppanchor=0
+# ppsmooth = low-pass toward the new position/facing each tick, 0..1.
+#            1.00 = no damping  -> panel snaps exactly to the NPC, may jitter with the walk cycle.
+#            0.30 = default     -> glides.
+#            0.10 = heavy       -> very smooth, but visibly lags an NPC who turns quickly.
+ppsmooth=0.30
+
+# ---- PICKPOCKET reveal roll (phase 3) ----
+# Each masked item's "Reveal? XX%" is derived from its vanilla pickpocket-STEAL chance (your skill vs theirs
+# + the item's REAL hidden weight & value). A peek is LESS risky than a full steal:
+#   reveal% = 100 - (100 - steal%) * pprevealrisk,  clamped to [pprevealmin, pprevealmax].
+# Clicking a Reveal button ROLLS that %. Success unmasks the item; FAILURE = caught (bounty + the NPC's
+# crime-AI reaction) and that NPC is locked out of pickpocketing for the rest of the game session.
+# pprevealrisk: 0 = peeking never fails; 1 = as risky as stealing; 0.5 = half. Lower = easier peeks.
+pprevealrisk=0.5
+pprevealmin=5
+pprevealmax=95
+
+# ---- PICKPOCKET slow-motion (SpellWheelVR-style) ----
+# While the pickpocket overlay is up, the WORLD slows; restored the instant the overlay closes.
+# ppslowtime = the SLOWDOWN percent (how much SLOWER than normal): 70 = 70% slower = the world runs at
+# 30% speed. Higher = SLOWER. 0 = OFF (normal speed). 50 = half speed. Capped at 95% (very slow).
+# In VR your head, hands and this panel stay real-time -- only NPCs / physics / animation / audio slow.
+ppslowtime=70
