@@ -87,7 +87,7 @@ full **VR pickpocketing** system — all diegetic, all in your hands.
 | **[HIGGS VR](https://www.nexusmods.com/skyrimspecialedition/mods/43930)** | **physical grab / hold / release of every item — mandatory** |
 | [SkyUI VR](https://github.com/Odie/skyui-vr/releases) | the base icon set + the MCM framework |
 | [MCM Helper VR](https://www.nexusmods.com/skyrimspecialedition/mods/53000) | the in-game settings menu |
-| [ElSopa HD – Big Backpack] | textures for the backpack model |
+| [ElSopa HD – Big Backpack](https://www.nexusmods.com/skyrimspecialedition/mods/36445) | textures for the backpack model |
 
 **Optional — highly recommended:**
 
