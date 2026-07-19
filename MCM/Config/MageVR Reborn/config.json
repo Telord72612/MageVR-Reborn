@@ -1,0 +1,87 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Exit-9B/MCM-Helper/main/docs/config.schema.json",
+  "modName": "MageVR Reborn",
+  "displayName": "MageVR Reborn",
+  "minMcmVersion": 13,
+  "cursorFillMode": "topToBottom",
+  "pages": [
+    {
+      "pageDisplayName": "Settings",
+      "cursorFillMode": "topToBottom",
+      "content": [
+        {
+          "type": "header",
+          "text": "Overlays"
+        },
+        {
+          "id": "iPickpocketMode:Overlays",
+          "type": "enum",
+          "text": "Pickpocket overlay",
+          "help": "Activating a LIVING npc. Disabled = the vanilla pickpocket screen. Backpack out only = the panel appears only while the backpack is drawn. Always on = pickpocket with empty hands (the panel floats on the NPC, so it never needed the bag in hand). A dead body always uses the loot overlay instead.",
+          "valueOptions": {
+            "options": [
+              "Disabled",
+              "Backpack out only",
+              "Always on"
+            ],
+            "sourceType": "ModSettingInt",
+            "defaultValue": 2
+          }
+        },
+        {
+          "id": "iLootMode:Overlays",
+          "type": "enum",
+          "text": "Loot overlay",
+          "help": "Activating a container, or a dead body. Disabled = the vanilla container menu (use this if another container-menu mod conflicts). Backpack out only = the panel appears only while the backpack is drawn. Always on = containers open the panel with empty hands.",
+          "valueOptions": {
+            "options": [
+              "Disabled",
+              "Backpack out only",
+              "Always on"
+            ],
+            "sourceType": "ModSettingInt",
+            "defaultValue": 2
+          }
+        },
+        {
+          "type": "header",
+          "text": "Controls"
+        },
+        {
+          "id": "iSelectButton:Controls",
+          "type": "enum",
+          "text": "Select button",
+          "help": "The button that CONFIRMS what you are pointing at: tabs, item slots, page arrows, utility buttons, popup buttons, and TAKE EVERYTHING. Default: Trigger. Must differ from the grab button.",
+          "valueOptions": {
+            "options": [
+              "Trigger",
+              "Grip",
+              "A / X",
+              "B / Y",
+              "Joystick click"
+            ],
+            "sourceType": "ModSettingInt",
+            "defaultValue": 0
+          }
+        },
+        {
+          "id": "iGrabButton:Controls",
+          "type": "enum",
+          "text": "Grab button",
+          "help": "The button that GRABS: pull an item out into your hand, rearrange slots, and deposit into a container. Default: Grip. Must differ from the select button; if you set them the same, grab reverts to its default.",
+          "valueOptions": {
+            "options": [
+              "Trigger",
+              "Grip",
+              "A / X",
+              "B / Y",
+              "Joystick click"
+            ],
+            "sourceType": "ModSettingInt",
+            "defaultValue": 1
+          }
+        }
+      ]
+    }
+  ]
+}
