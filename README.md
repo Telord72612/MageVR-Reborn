@@ -1,15 +1,18 @@
-# Mage VR Reborn — VR Backpack (Chapter 1)
+# Mage VR Reborn
 
-A *Walking Dead: Saints & Sinners*-style **physical** inventory for Skyrim VR. Reach over your shoulder,
-pull your backpack into your hand, and browse your **real inventory** on a fully 3D, in-world interface —
-no flat menus, no SteamVR overlays. Point at an item, grab it, pull, and it's **physically in your hand**.
+**In-world VR interfaces for Skyrim VR** — real geometry you hold in your hands, not flat menus and not
+SteamVR overlays. Two chapters ship in one FOMOD; install either, or both.
 
-The same in-world interface also powers **looting containers**, a **5×5 personal storage** upgrade, and a
-full **VR pickpocketing** system — all diegetic, all in your hands.
+| Chapter | What it is |
+|---|---|
+| **VR Backpack** | A *Walking Dead: Saints & Sinners*-style physical inventory. Reach over your shoulder, pull the bag into your hand, and browse your real inventory in 3D. Also powers container looting, a 5×5 personal storage upgrade, and full VR pickpocketing. |
+| **VR SpellBook** | A holsterable spellbook, and a way to cast without ever opening a menu — draw a glyph in the air to fire the spell bound to it. Plus dual casting, a two-handed shout gesture, summon portals, and a living stat page. |
 
-> **Version 1.0.** Chapter 1 of the *Mage VR Reborn* project. Logs are written to `SKSE/VRBackpack.log`.
+> **Version 2.1.** Both chapters share one MCM. Logs go to `SKSE/VRBackpack.log` and `SKSE/VRSBSpike.log`.
 
 ---
+
+# Chapter 1 — VR Backpack
 
 ## Features
 
@@ -74,6 +77,55 @@ full **VR pickpocketing** system — all diegetic, all in your hands.
 
 ---
 
+# Chapter 2 — VR SpellBook
+
+A spellbook you wear and pull off a VRIK holster. Its real job is that you stop opening the magic menu:
+you bind a spell to a glyph once, then **draw that glyph in the air** to cast it.
+
+## Features
+
+### Glyph casting
+- **Draw to cast.** Hold the casting button and the void tears open in front of you. Trace a stroke with the
+  draw button, release, and the glyph snaps clean. Release the casting button to recognise it and fire.
+- **Compound glyphs.** The first stroke is the main glyph; up to **four more** strokes add secondary glyphs,
+  so one shape family covers a whole school.
+- **Spells *and* scrolls.** Scrolls bind to glyphs like spells and are consumed on cast.
+- **Cast or equip.** A glyph can fire the spell outright or just put it in your hand — your choice per binding.
+- **The runes are alive.** Composing runes glow faintly as you draw; on a successful cast the finished glyph
+  pulses from 80% to full brightness, shimmers, and dissolves.
+
+### Dual casting
+- **Both hands, at the same time.** Draw with both hands to dual cast. It is genuinely simultaneous — if one
+  hand adds a secondary glyph the other does not match, **that side's glyph disappears** so you can see
+  exactly which hand broke the pair.
+- **Or keep them independent**, so you can hold a spell in one hand and draw with the other.
+
+### Shouts
+- **A two-handed gesture, not a button.** Reach out, pull the Voice in, then push forward and release.
+- **Aimed by your arm.** The shout travels the direction you pushed — no headset targeting.
+- **The real dragon voice** speaks the words as they fire, and the normal shout cooldown is respected.
+
+### Summons
+- **Portals with an arrival wait** that scales with the spell's tier — a master summon takes longer to land
+  than an apprentice one.
+- **The duration starts when the summon actually arrives**, not when you cast.
+- **One at a time**, and a refused cast **never costs magicka**.
+
+### The book itself
+- **Per-school pages** with favourites, powers and scrolls, paged like the backpack.
+- **A living stat page**, plus an **Arcane Insight** scan spell that reads the effects on whatever you look at.
+- **Per-item icons** that light up, and **hide/unhide per tab** so a page only shows what you care about.
+- **Delete spells and powers** you never use — they leave the normal magic menu too. Shouts are never
+  deletable, and racial powers keep their once-a-day rule; this is not a cheat menu.
+
+### The token
+The **Spellbook Token** is granted automatically, once per character. Lost it? The MCM has an
+**"Add Spellbook Token"** button.
+
+---
+
+# Both chapters
+
 ## Requirements
 
 **Hard requirements — the mod will not work without these:**
@@ -82,12 +134,12 @@ full **VR pickpocketing** system — all diegetic, all in your hands.
 |---|---|
 | [SKSE VR](http://skse.silverlock.org/) | the plugin is an SKSE VR plugin |
 | [VR Address Library for SKSEVR](https://www.nexusmods.com/skyrimspecialedition/mods/58101) | version-independent function resolution |
-| [Skyrim VR ESL Support](https://www.nexusmods.com/skyrimspecialedition/mods/106712) | both plugins are ESL-flagged and need VR ESL loading |
-| **[VRIK Player Avatar](https://www.nexusmods.com/skyrimspecialedition/mods/23416)** | **your body + the shoulder holster the backpack draws from — mandatory** |
+| [Skyrim VR ESL Support](https://www.nexusmods.com/skyrimspecialedition/mods/106712) | all three plugins are ESL-flagged and need VR ESL loading |
+| **[VRIK Player Avatar](https://www.nexusmods.com/skyrimspecialedition/mods/23416)** | **your body + the shoulder holster the backpack and spellbook draw from — mandatory** |
 | **[HIGGS VR](https://www.nexusmods.com/skyrimspecialedition/mods/43930)** | **physical grab / hold / release of every item — mandatory** |
 | [SkyUI VR](https://github.com/Odie/skyui-vr/releases) | the base icon set + the MCM framework |
-| [MCM Helper VR](https://www.nexusmods.com/skyrimspecialedition/mods/53000) | the in-game settings menu |
-| [ElSopa HD – Big Backpack](https://www.nexusmods.com/skyrimspecialedition/mods/36445) | textures for the backpack model |
+| [MCM Helper](https://www.nexusmods.com/skyrimspecialedition/mods/53000) **1.3+, VR main file** | the in-game settings menu |
+| [ElSopa HD – Big Backpack](https://www.nexusmods.com/skyrimspecialedition/mods/36445) | textures for the backpack model (Chapter 1 only) |
 
 **Optional — highly recommended:**
 
@@ -100,21 +152,33 @@ full **VR pickpocketing** system — all diegetic, all in your hands.
 > **No I4? No problem.** With Inventory Injector the backpack reproduces your exact I4 icon-pack icons;
 > without it, every item falls back to the standard SkyUI icons — the same ones your inventory menu shows.
 
+> **MCM missing or blank?** Three things, in order: (1) install MCM Helper's **VR** main file, not the SE
+> one; (2) let **MCM Helper win over SkyUI VR** in your mod manager's priority — both ship a loose
+> `SKI_ConfigMenu.pex`, and SkyUI VR has no BSA to lose to; (3) keep `MageVR Reborn.esp` **enabled and
+> unrenamed** — MCM Helper matches the menu to a plugin of that exact name.
+> `Documents/My Games/Skyrim VR/SKSE/MCMHelper.log` names the failure directly.
+
 ---
 
 ## Installation
 
-1. Install the requirements above 
-2. Install this mod with your mod manager (MO2 recommended) via the FOMOD.
-3. In game: **wear a Big Leather Backpack** (craft one at a tanning rack via Campfire / Wet & Cold). The
-   Backpack Token appears in your inventory automatically.
-4. Equip the token, then holster it on your body with VRIK and draw it to open the backpack.
-   **Note:** the token counts as a knife, so to holster it on your shoulder you must allow knife shoulder
+1. Install the requirements above.
+2. Install with your mod manager (MO2 recommended) via the FOMOD. **Core is required** — it carries the
+   shared MCM — then tick **VR Backpack**, **VR SpellBook**, or both.
+3. **Chapter 1:** in game, **wear a Big Leather Backpack** (craft one at a tanning rack via Campfire /
+   Wet & Cold). The Backpack Token appears in your inventory automatically.
+4. **Chapter 2:** the Spellbook Token is granted automatically, once per character. No crafting needed.
+5. Equip a token, holster it on your body with VRIK, and draw it to open that interface.
+   **Note:** the tokens count as knives, so to holster one on your shoulder you must allow knife shoulder
    holstering in the VRIK menu.
+
+Upgrading from V1.x is safe — overwrite and keep playing.
 
 ---
 
 ## Controls
+
+### VR Backpack
 
 | Action | Input |
 |---|---|
@@ -129,26 +193,48 @@ full **VR pickpocketing** system — all diegetic, all in your hands.
 | Pickpocket | **sneak**, then reach into the NPC |
 | Reveal a pocketed item | trigger the **Reveal** banner; grab to steal |
 
+### VR SpellBook
+
+| Action | Input |
+|---|---|
+| Enter casting mode | **hold** the casting button (default **A / X**) |
+| Trace a glyph stroke | hold the **draw** button (default trigger) and move your hand |
+| Next stroke (secondary glyph) | release and press the draw button again — up to 4 more |
+| Cast the finished glyph | **release** the casting button |
+| Dual cast | draw with **both hands at once** |
+| Shout | reach out, pull the Voice in, then **push forward and release** — the push aims it |
+| Open the book | holster the Spellbook Token with VRIK and draw it |
+
+Every button above is remappable in the MCM, and both hands can be configured independently.
+
+> **Casting mode is a hold, not a press.** A short press passes straight through to the game, so the button
+> keeps its normal function. This matters under **OpenComposite / OCU**, where ACTIVATE is bound to **A** —
+> the same button casting mode defaults to. Tune the hold length with `castholdms` in
+> `SKSE/Plugins/vrsb_spike.txt` (milliseconds; reloads live, no restart), or pick a different casting button.
+
 ---
 
 ## Known limitations
 
 - **Skyrim VR only** (this is a VR interaction mod at its core).
-- Item names render A–Z, 0–9 and basic punctuation (accented characters display as blanks).
+- Text renders from a baked character atlas covering **A–Z, 0–9 and basic punctuation**. Accented and
+  non-Latin characters draw as blanks, so localized item and spell names will show gaps. Wider character
+  support is on the list.
 
 ---
 
 ## MageVR project and timeline
+
 Completed
-- **VR Backpack** Initial release.
+- **VR Backpack** Initial release
 - **VR Backpack** Looting system
+- **VR SpellBook** Initial release
+- **VR SpellBook** Glyph casting, dual casting, shout gesture, summon portals, stat page
 
 In progress
 - **VR Backpack** Adding different backpack layout and type
-- **VR Spellbook** Initial release
-- **VR Spellbook** Glyph Casting
 - **VR QuestLog** Initial release
-- **VR Questlog** VR Map integration
+- **VR QuestLog** VR Map integration
 ---
 
 ## Credits
